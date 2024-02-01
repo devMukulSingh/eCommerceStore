@@ -1,7 +1,8 @@
 export interface IinitialState{
     categories: Icategory[],
-    billboard : Ibillboard |  null,
-    products : Iproducts[]
+    billboard : Ibillboard | null ,
+    products : Iproducts[],
+    product: Iproducts | null,
 }
 export interface Icategory{
     name:string,
@@ -18,13 +19,17 @@ export interface Ibillboard{
     createdAt : string
 }
 export interface Iproducts{
-    imageUrl : string,
+    images : {
+        url:string
+    }[] ,
     id:string,
     name:string,
-    color:string,
+    colorId:string,
     size:string,
+    categoryId: string,
+    price:number,
     isFeatured : boolean,
     isArchived : boolean,
     date : string,
+    description: string[],
 }
-

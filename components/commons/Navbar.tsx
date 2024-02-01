@@ -27,7 +27,7 @@ const Navbar = () => {
         {
           categories && categories?.map( (category:Icategory) => (
             <Link 
-              href={`/categories/${category.id}`}
+              href={`/category/${category.id}`}
               key={category.id}
               className='text-lg transition hover:scale-110  hover:underline underline-offset-8'>
               {category.name}

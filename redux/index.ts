@@ -3,11 +3,13 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { getCategories } from "./reducers/getCategories";
 import { getBillboard } from "./reducers/getBillboard";
 import { getProducts } from "./reducers/getProducts";
+import { getProduct } from "./reducers/getProduct";
 
 const initialState:IinitialState = {
     categories:[],
     billboard : null,
-    products : []
+    products : [],
+    product : null,
 }
 
 const ecommSlice = createSlice({
@@ -25,6 +27,9 @@ const ecommSlice = createSlice({
         });
         builder.addCase( getProducts.fulfilled, ( state,action) => {
             state.products = action.payload;
+        });
+        builder.addCase( getProduct.fulfilled, ( state,action) => {
+            state.product = action.payload;
         });
     },
     
