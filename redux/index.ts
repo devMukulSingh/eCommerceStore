@@ -5,11 +5,14 @@ import { getBillboard } from "./reducers/getBillboard";
 import { getProducts } from "./reducers/getProducts";
 import { getProduct } from "./reducers/getProduct";
 
+
+
 const initialState:IinitialState = {
     categories:[],
     billboard : null,
     products : [],
     product : null,
+    cartProducts : localStorage.length > 0 ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
 }
 
 const ecommSlice = createSlice({
@@ -17,6 +20,23 @@ const ecommSlice = createSlice({
     initialState,
     reducers:{
 
+        setCartProduct : (state,action) => {
+            if(state.cartProducts && !state.cartProducts.find( item => item.id === action.payload.id )){
+                state.cartProducts.push(action.payload);
+                const products = JSON.stringify(state.cartProducts);
+                localStorage.setItem('cartProducts', products);
+            }
+        },
+        removeCartProduct : (state,action) => {
+            state.cartProducts = state.cartProducts.filter( item => item.id !== action.payload);
+            localStorage.clear();
+            localStorage.setItem('cartProducts',JSON.stringify(state.cartProducts));
+        },
+        clearCartProducts : (state) => {
+            state.cartProducts = [];
+            localStorage.clear();
+        }
+        
     },
     extraReducers: (builder) => {
         builder.addCase(getCategories.fulfilled, (state,action) => {
@@ -40,6 +60,8 @@ export const store = configureStore({
         ecomm : ecommSlice.reducer
     }
 });
+
+export const{ setCartProduct,removeCartProduct,clearCartProducts } = ecommSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;

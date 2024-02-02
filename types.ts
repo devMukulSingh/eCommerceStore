@@ -3,6 +3,7 @@ export interface IinitialState{
     billboard : Ibillboard | null ,
     products : Iproducts[],
     product: Iproducts | null,
+    cartProducts : Iproducts[] ,
 }
 export interface Icategory{
     name:string,

@@ -39,7 +39,7 @@ const ProductCard:React.FC<ProductsPageProps> = ({
             src={ product.images[0].url} 
             alt="productImg" fill /> 
         </figure>
-        <h1 className="text-lg font-medium self-start">{product.name}</h1>
+        <h1 className="text-lg font-medium self-start line-clamp-2">{product.name}</h1>
         <h1 className="text-neutral-400 self-start">₹{product.price}</h1>
       </main>
     </Link>

@@ -1,6 +1,9 @@
 "use client"
+import { setCartProduct } from "@/redux";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Iproducts } from "@/types"
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface ProductDetailsProps{
     product : Iproducts 
@@ -9,13 +12,26 @@ interface ProductDetailsProps{
 const ProductDetails : React.FC<ProductDetailsProps> = ({
     product
 }) => {
-    console.log(product);
+
+    const dispatch = useAppDispatch();
+    const cartProducts = useAppSelector( state=> state.ecomm.cartProducts);
+    console.log(cartProducts);
+    
+    const handleAddToCart = () => {
+        if(!cartProducts?.find( item => item.id === product.id)){
+            dispatch(setCartProduct(product));
+            toast.success("Item added to Cart");
+        }
+        else{
+            toast.error("Item already in Cart");
+        }
+    }
     
   return (
 
     <main className="flex gap-5 lg:flex-row flex-col ">
 
-      <figure className="relative w-[30rem] h-[40rem]">
+      <figure className="relative w-[30rem] h-[35rem]">
         <Image 
             src={product?.images?.[0]?.url} 
             alt='productImage'
@@ -28,7 +44,7 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
             <div className="flex flex-col space-y-3 max-w-[50rem] h-fit">
                 <h1 className="text-2xl font-medium">{product?.name}</h1>
                 <h1 className="text-xl font-semibold">₹{product?.price}</h1>
-
+                <hr/>
                 <h1 className="font-semibold text-xl">Details</h1>
                 <div className="space-y-2 ml-5 basis-1/2">
                     {
@@ -39,9 +55,10 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
                         ))
                     }
                 </div>
+                <hr/>
                 <div className="flex gap-5 mt-auto">
                     <button >Buy Now</button>
-                    <button>Add to Cart</button>
+                    <button onClick={ handleAddToCart}>Add to Cart</button>
                 </div>
             </div>
 

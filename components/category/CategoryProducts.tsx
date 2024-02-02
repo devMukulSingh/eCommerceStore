@@ -14,7 +14,7 @@ const CategoryProducts = () => {
 
 useEffect( () => {
     dispatch(getProducts());
-});
+},[]);
 
 const products = useAppSelector( state => state.ecomm.products);
 const filteredProducts = products.filter( item => item.categoryId === categoryId);

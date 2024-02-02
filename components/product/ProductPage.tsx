@@ -15,15 +15,17 @@ const ProductPage = () => {
   useEffect ( () => {
     dispatch( getProduct(productId));
   },[productId]);
+  // useE
   
   const product = useAppSelector( state => state.ecomm.product);
 
   return (
 
     product && (
-      <div className='w-full flex  px-10 py-10'>
+      <div className='w-full flex flex-col gap-5 px-10 py-10'>
         <ProductDetails product = {product} />
-        <RelatedProducts/>
+        <hr className=''/>
+        <RelatedProducts categoryId = {product.categoryId}/>
     </div>
       )
   )
