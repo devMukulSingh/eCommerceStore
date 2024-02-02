@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Iproducts } from "@/types"
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { Button } from "../ui/button";
 
 interface ProductDetailsProps{
     product : Iproducts 
@@ -40,7 +41,7 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
             />
       </figure>
 
-        <section className="flex w-[calc(100vw-35rem)] ">
+        <section className="flex w-[calc(100vw-35rem)] h-full">
             <div className="flex flex-col space-y-3 max-w-[50rem] h-fit">
                 <h1 className="text-2xl font-medium">{product?.name}</h1>
                 <h1 className="text-xl font-semibold">₹{product?.price}</h1>
@@ -57,8 +58,12 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
                 </div>
                 <hr/>
                 <div className="flex gap-5 mt-auto">
-                    <button >Buy Now</button>
-                    <button onClick={ handleAddToCart}>Add to Cart</button>
+                    <Button variant="outline" >Buy Now</Button>
+                    <Button 
+                        onClick={ handleAddToCart}
+                        className="bg-[#0984e3] hover:bg-[#74b9ff]"
+                        >Add to Cart
+                    </Button>
                 </div>
             </div>
 

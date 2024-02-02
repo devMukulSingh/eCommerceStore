@@ -18,7 +18,8 @@ const CartItem:React.FC<CartItemProps> = ({
         dispatch(removeCartProduct(cartItem.id));
     }
   return (
-    <main className="flex gap-10 items-center">
+    <>
+    <main className="flex items-center">
         <figure className="relative h-[10rem] w-[15rem]">
             <Image
                 className="rounded-md object-contain object-top" 
@@ -27,16 +28,20 @@ const CartItem:React.FC<CartItemProps> = ({
                 alt="cartProductImg"/>
         </figure>
         <section className="flex flex-col gap-5">
-            <h1 className="text-xl font-semibold">{cartItem.name}</h1>
-            <h1 className="">₹{cartItem.price}</h1>
+            <h1 className="text-xl font-semibold line-clamp-2">{cartItem.name}</h1>
+            <h1 className="text-lg text-neutral-400">₹{cartItem.price}</h1>
             <Button
                 onClick={ handleRemoveFromCart }
+                size="icon"
                 variant="ghost"
-                size="icon">
-                <Trash className="w-4 h-4"/>
+                className="mt-auto"
+                >
+                <Trash className=""/>
             </Button>
         </section>
     </main>
+        <hr/>
+    </>
   )
 }
 
