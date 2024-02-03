@@ -19,13 +19,7 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
     console.log(cartProducts);
     
     const handleAddToCart = () => {
-        if(!cartProducts?.find( item => item.id === product.id)){
-            dispatch(setCartProduct(product));
-            toast.success("Item added to Cart");
-        }
-        else{
-            toast.error("Item already in Cart");
-        }
+        dispatch(setCartProduct(product));
     }
     
   return (

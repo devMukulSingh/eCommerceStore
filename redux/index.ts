@@ -4,8 +4,7 @@ import { getCategories } from "./reducers/getCategories";
 import { getBillboard } from "./reducers/getBillboard";
 import { getProducts } from "./reducers/getProducts";
 import { getProduct } from "./reducers/getProduct";
-
-
+import toast from "react-hot-toast";
 
 const initialState:IinitialState = {
     categories:[],
@@ -25,6 +24,10 @@ const ecommSlice = createSlice({
                 state.cartProducts.push(action.payload);
                 const products = JSON.stringify(state.cartProducts);
                 localStorage.setItem('cartProducts', products);
+                toast.success('Item added to Cart');
+            }
+            else{
+                toast.error('Item already in cart');
             }
         },
         removeCartProduct : (state,action) => {
