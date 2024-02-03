@@ -10,9 +10,12 @@ const CartPage = () => {
   console.log(cartItems);
   
   return (
-    <main className="flex gap-10 px-5 lg:px-20 md:px-10 py-10">
+    <main className="flex flex-col items-center lg:flex-row lg:items-start gap-10 px-5 lg:px-15 md:px-10 py-10 ">
       <Cart cartItems={cartItems}/>
-      <CartTotal cartItems={cartItems}/>
+      {
+        cartItems.length > 0 &&
+        <CartTotal cartItems={cartItems}/>
+      }
     </main>
   )
 }

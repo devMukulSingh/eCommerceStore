@@ -61,7 +61,6 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
                     <Button variant="outline" >Buy Now</Button>
                     <Button 
                         onClick={ handleAddToCart}
-                        className="bg-[#0984e3] hover:bg-[#74b9ff]"
                         >Add to Cart
                     </Button>
                 </div>

@@ -9,7 +9,7 @@ const CartTotal:React.FC<CartTotalProps> = ({
     cartItems
 }) => {
   return (
-    <main className='h-screen' >
+    <main className='h-screen lg:ml-auto '>
         <section className='p-5 w-[25rem] border flex flex-col items-center gap-5'>
             <h1 className='text-2xl font underline -semibold'>Subtotal</h1>
                 <div className='space-y-2'>
@@ -25,7 +25,7 @@ const CartTotal:React.FC<CartTotalProps> = ({
                 <h1 className='text-2xl font-semibold'>
                     ₹{cartItems.map(item => item.price).reduce( (prevPrice,currPrice) => prevPrice+currPrice)}
                 </h1>
-                <Button className='bg-[#0984e3] hover:bg-[#74b9ff]'>
+                <Button>
                     Proceed To Checkout
                 </Button>
         </section>
