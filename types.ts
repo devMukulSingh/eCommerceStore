@@ -33,4 +33,5 @@ export interface Iproducts{
     isArchived : boolean,
     date : string,
     description: string[],
+    ratings: number,
 }

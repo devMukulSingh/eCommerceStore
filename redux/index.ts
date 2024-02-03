@@ -1,6 +1,6 @@
 import { IinitialState } from "@/types";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { getCategories } from "./reducers/getCategories";
+import { getCategories } from "./reducers/getCategories";   
 import { getBillboard } from "./reducers/getBillboard";
 import { getProducts } from "./reducers/getProducts";
 import { getProduct } from "./reducers/getProduct";
@@ -11,7 +11,7 @@ const initialState:IinitialState = {
     billboard : null,
     products : [],
     product : null,
-    cartProducts : localStorage.length > 0 ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
+    cartProducts : (typeof window!=='undefined' && localStorage.length > 0) ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
 }
 
 const ecommSlice = createSlice({

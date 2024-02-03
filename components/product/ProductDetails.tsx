@@ -3,8 +3,9 @@ import { setCartProduct } from "@/redux";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Iproducts } from "@/types"
 import Image from "next/image";
-import toast from "react-hot-toast";
 import { Button } from "../ui/button";
+import  ReactStars  from "react-rating-stars-component";
+
 
 interface ProductDetailsProps{
     product : Iproducts 
@@ -39,6 +40,21 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
             <div className="flex flex-col space-y-3 max-w-[50rem] h-fit">
                 <h1 className="text-2xl font-medium">{product?.name}</h1>
                 <h1 className="text-xl font-semibold">₹{product?.price}</h1>
+                <div className="flex items-center gap-2">
+                    <h1 className="font-semibold text-neutral-400">Ratings</h1>
+                    <ReactStars 
+                        count={5}
+                        value={product.ratings}
+                        edit={false}
+                        size={24}
+                        isHalf={true}
+                        emptyIcon={<i className="far fa-star"></i>}
+                        halfIcon={<i className="fa fa-star-half-alt"></i>}
+                        fullIcon={<i className="fa fa-star"></i>}
+                        activeColor="#ffd700"
+                    />  
+                </div>
+
                 <hr/>
                 <h1 className="font-semibold text-xl">Details</h1>
                 <div className="space-y-2 ml-5 basis-1/2">
