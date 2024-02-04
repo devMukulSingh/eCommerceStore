@@ -1,6 +1,9 @@
+"use client"
 import { Iproducts } from '@/types'
-import React from 'react'
 import { Button } from '../ui/button'
+import axios from 'axios'
+import { BASE_URL } from '@/constants/constants'
+import { useRouter } from 'next/navigation'
 
 interface CartTotalProps{
     cartItems : Iproducts[],
@@ -8,6 +11,21 @@ interface CartTotalProps{
 const CartTotal:React.FC<CartTotalProps> = ({
     cartItems
 }) => {
+
+    const router = useRouter();
+    const handleCheckout = async() => {
+        const productIds = cartItems.map( item => item.id);
+        console.log(productIds);
+    
+        try{
+            const {data} = await axios.post(`${BASE_URL}/checkout`,productIds);
+            router.push(data.url);
+   
+        }
+        catch(e){
+            console.log(`Error in handleCheckout ${e}`);
+        }
+    }
   return (
     <main className='h-screen lg:ml-auto '>
         <section className='p-5 w-[25rem] border flex flex-col items-center gap-5'>
@@ -25,7 +43,7 @@ const CartTotal:React.FC<CartTotalProps> = ({
                 <h1 className='text-2xl font-semibold'>
                     ₹{cartItems.map(item => item.price).reduce( (prevPrice,currPrice) => prevPrice+currPrice)}
                 </h1>
-                <Button>
+                <Button onClick={ handleCheckout }>
                     Proceed To Checkout
                 </Button>
         </section>

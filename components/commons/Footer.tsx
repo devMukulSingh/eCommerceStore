@@ -1,9 +1,7 @@
 
-
-
 const Footer = () => {
 return (
-    <main className="flex justify-center items-center mt-auto h-screen">
+    <main className="flex justify-center items-center mt-auto">
         Footer
     </main>
   )

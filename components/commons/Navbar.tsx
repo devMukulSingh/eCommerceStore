@@ -10,14 +10,18 @@ import { useRouter } from 'next/navigation';
 const Navbar = () => {
 
     const dispatch = useAppDispatch();
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect( () => {
+      setIsMounted(true);
       dispatch(getCategories());
     },[]);
 
     const categories = useAppSelector( state => state.ecomm.categories);    
     const cartProducts = useAppSelector( state => state.ecomm.cartProducts);
     const router = useRouter();
+
+    if( !isMounted) return null;
 
   return (
     <main className='p-4 h-20 border flex items-center gap-10 w-full'>

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Button } from "../ui/button"
 import { setCartProduct } from "@/redux"
 import { useAppDispatch } from "@/redux/hooks"
+//@ts-ignore
 import  ReactStars  from "react-rating-stars-component";
 
 

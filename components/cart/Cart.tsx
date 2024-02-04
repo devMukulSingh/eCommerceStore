@@ -1,6 +1,7 @@
 import { Iproducts } from '@/types'
 import CartItem from "@/components/cart/CartItem";
 import EmptyCart from './EmptyCart';
+import { useEffect, useState } from 'react';
 
 interface CartProps{
     cartItems:Iproducts[]

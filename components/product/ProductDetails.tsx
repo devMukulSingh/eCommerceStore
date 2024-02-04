@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Iproducts } from "@/types"
 import Image from "next/image";
 import { Button } from "../ui/button";
+//@ts-ignore
 import  ReactStars  from "react-rating-stars-component";
 
 
