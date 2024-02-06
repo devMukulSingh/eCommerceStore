@@ -1,11 +1,16 @@
 "use client"
 import { setCartProduct } from "@/redux";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { Iproducts } from "@/types"
 import Image from "next/image";
 import { Button } from "../ui/button";
 //@ts-ignore
 import  ReactStars  from "react-rating-stars-component";
+import { Loader } from "lucide-react";
+import axios from "axios";
+import { BASE_URL } from "@/constants/constants";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 interface ProductDetailsProps{
@@ -16,14 +21,26 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
     product
 }) => {
 
+    const [loading, setLoading] = useState(false);
     const dispatch = useAppDispatch();
-    const cartProducts = useAppSelector( state=> state.ecomm.cartProducts);
-    console.log(cartProducts);
+    const router = useRouter();
     
     const handleAddToCart = () => {
         dispatch(setCartProduct(product));
     }
-    
+    const handleBuyNow = async() => {
+        setLoading(true);
+        try{
+            const {data} = await axios.post(`${BASE_URL}/checkout`, { data : [product.id] } ); 
+            router.push(data.url);
+        }
+        catch(e){
+            console.log(`Error in handleCheckout ${e}`);
+        }
+        finally{
+            setLoading(false);
+        }
+    }
   return (
 
     <main className="flex gap-5 lg:flex-row flex-col ">
@@ -69,9 +86,16 @@ const ProductDetails : React.FC<ProductDetailsProps> = ({
                 </div>
                 <hr/>
                 <div className="flex gap-5 mt-auto">
-                    <Button variant="outline" >Buy Now</Button>
+                    <Button 
+                        variant="outline"
+                        onClick={ handleBuyNow }
+                        >
+                        <Loader className={`${loading ? 'animate-spin mr-2' : 'hidden'} `}/>
+                        Buy Now
+                    </Button>
                     <Button 
                         onClick={ handleAddToCart}
+                        disabled={loading}
                         >Add to Cart
                     </Button>
                 </div>

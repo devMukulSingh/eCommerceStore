@@ -9,7 +9,7 @@ const CartPage = () => {
 
   const [isMounted, setIsMounted] = useState(false);
   const cartItems = useAppSelector( state => state.ecomm.cartProducts);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   useEffect( () => {
     setIsMounted(true);
