@@ -36,7 +36,7 @@ const HomePage = () => {
                 <h1 className="text-3xl font-bold underline">
                     Featured Collection
                 </h1>
-                <div className="grid lg:grid-cols-4 gap-10 md:grid-cols-3 grid-cols-1">
+                <div className="grid lg:grid-cols-4 gap-10 md:grid-cols-3 grid-cols-1 sm:mx-auto sm:w-full ">
 
                 {
                     products && products.map( (product) => {

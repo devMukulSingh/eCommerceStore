@@ -74,7 +74,7 @@ const ProductCard:React.FC<ProductsPageProps> = ({
             onClick={ handleAddToCart }
             size="icon"
             variant="outline"
-            className="absolute top-14 right-14 z-10 rounded-full ">
+            className="absolute top-14 lg:right-14 md:right-10 left-2 z-10 rounded-full ">
             <ShoppingCart className="w-6 h-6"/>
           </Button>
       </main>
