@@ -3,12 +3,14 @@ import { Icategory } from '@/types';
 import Link from 'next/link';
 import React, { useState } from 'react'
 import { useEffect } from "react";
-import { ShoppingBag } from "lucide-react"
+import { Menu, ShoppingBag } from "lucide-react"
 import { getCategories } from '@/redux/reducers/getCategories';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { ThemeToggle } from './ThemeToggle';
+import Navlinks from './Navlinks';
+import { setOpenSidebar } from '@/redux';
 const Navbar = () => {
 
   const dispatch = useAppDispatch();
@@ -19,7 +21,7 @@ const Navbar = () => {
     dispatch(getCategories());
   }, []);
 
-  const categories = useAppSelector(state => state.ecomm.categories);
+
   const cartProducts = useAppSelector(state => state.ecomm.cartProducts);
   const router = useRouter();
 
@@ -32,19 +34,12 @@ const Navbar = () => {
         className='text-3xl font-bold'>
         Store
       </Link>
-      <section className='flex gap-5'>
-        {
-          categories && categories?.map((category: Icategory) => (
-            <Link
-              href={`/category/${category.id}`}
-              key={category.id}
-              className='text-lg transition hover:scale-110  hover:underline underline-offset-8'>
-              {category.name}
-            </Link>
-          ))
-        }
-      </section>
+      <Navlinks />
       <section className='flex items-center gap-5 ml-auto'>
+        <Menu 
+          className='xl:hidden lg:hidden md:hidden block ml-auto'
+          onClick={ () => dispatch(setOpenSidebar())}
+          />
         <ThemeToggle />
         <button
           onClick={() => router.push('/cart')}

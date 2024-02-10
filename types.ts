@@ -4,6 +4,7 @@ export interface IinitialState{
     products : Iproducts[],
     product: Iproducts | null,
     cartProducts : Iproducts[] ,
+    openSidebar : boolean
 }
 export interface Icategory{
     name:string,

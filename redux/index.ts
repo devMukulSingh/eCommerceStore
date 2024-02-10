@@ -11,6 +11,7 @@ const initialState:IinitialState = {
     billboard : null,
     products : [],
     product : null,
+    openSidebar : false,
     cartProducts : (typeof window!=='undefined' && localStorage.length > 0) ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
 }
 
@@ -38,6 +39,9 @@ const ecommSlice = createSlice({
         clearCartProducts : (state) => {
             state.cartProducts = [];
             localStorage.clear();
+        },
+        setOpenSidebar : ( state) => {
+            state.openSidebar = !state.openSidebar
         }
         
     },
@@ -64,7 +68,7 @@ export const store = configureStore({
     }
 });
 
-export const{ setCartProduct,removeCartProduct,clearCartProducts } = ecommSlice.actions
+export const{ setCartProduct,removeCartProduct,clearCartProducts,setOpenSidebar } = ecommSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;

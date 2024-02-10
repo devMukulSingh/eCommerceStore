@@ -2,7 +2,7 @@ import React from 'react'
 
 const Filters = () => {
     return (
-        <main className='border py-5 pl-5 pr-20 flex-shrink h-fit flex flex-col '>
+        <main className='border py-5 pl-5 pr-20 flex-shrink h-fit lg:flex flex-col md:flex sm:flex  hidden  '>
 
             <section className='mt-3 flex flex-col gap-5'>
                 <div>
