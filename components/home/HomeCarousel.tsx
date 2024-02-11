@@ -4,10 +4,8 @@ import { useAppSelector } from '@/redux/hooks'
 import Image from 'next/image'
 
 const HomeCarousel = () => {
-  
-  const images = useAppSelector(state => state.ecomm.billboard)?.images;
 
-  // const images = useAppSelector( state )
+  const images = useAppSelector(state => state.ecomm.billboard)?.images;
 
   return (
     <main className=' p-5 relative border'>

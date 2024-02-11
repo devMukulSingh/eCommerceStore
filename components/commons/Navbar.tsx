@@ -11,6 +11,7 @@ import { Button } from '../ui/button';
 import { ThemeToggle } from './ThemeToggle';
 import Navlinks from './Navlinks';
 import { setOpenSidebar } from '@/redux';
+import SearchBar from './SearchBar';
 const Navbar = () => {
 
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ const Navbar = () => {
         mStore
       </Link>
       <Navlinks />
+      <SearchBar/>
       <section className='flex items-center gap-5 ml-auto'>
         <Menu
           className='xl:hidden lg:hidden md:hidden block ml-auto'
