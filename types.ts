@@ -4,7 +4,8 @@ export interface IinitialState{
     products : Iproducts[],
     product: Iproducts | null,
     cartProducts : Iproducts[] ,
-    openSidebar : boolean
+    openSidebar : boolean,
+    searchProducts : Iproducts[],
 }
 export interface Icategory{
     name:string,

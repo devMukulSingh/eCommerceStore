@@ -3,8 +3,13 @@ import { setOpenSidebar } from '@/redux';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Icategory } from '@/types';
 import Link from 'next/link';
+import { ThemeToggle } from './ThemeToggle';
+import { ShoppingBag } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const Sidebar = () => {
+    const router = useRouter();
+    const cartProducts = useAppSelector(state => state.ecomm.cartProducts);
     const dispatch = useAppDispatch();
     const categories = useAppSelector(state => state.ecomm.categories);
     return (
@@ -20,6 +25,22 @@ const Sidebar = () => {
                     </Link>
                 ))
             }
+            <ThemeToggle />
+            <button
+                onClick={() => router.push('/cart')}
+                className=" 
+                px-2
+                py-1
+                rounded-sm 
+                border
+                ml-auto
+                hidden
+                sm:flex 
+                ">
+                <ShoppingBag className='mr-1' />
+                <h1 className='text-lg'>{cartProducts?.length}</h1>
+            </button>
+
         </main>
     )
 }

@@ -5,6 +5,7 @@ import { getBillboard } from "./reducers/getBillboard";
 import { getProducts } from "./reducers/getProducts";
 import { getProduct } from "./reducers/getProduct";
 import toast from "react-hot-toast";
+import { getSearchProducts } from "./reducers/getSearchProducts";
 
 const initialState:IinitialState = {
     categories:[],
@@ -12,6 +13,7 @@ const initialState:IinitialState = {
     products : [],
     product : null,
     openSidebar : false,
+    searchProducts:[],
     cartProducts : (typeof window!=='undefined' && localStorage.length > 0) ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
 }
 
@@ -58,6 +60,9 @@ const ecommSlice = createSlice({
         builder.addCase( getProduct.fulfilled, ( state,action) => {
             state.product = action.payload;
         });
+        builder.addCase( getSearchProducts.fulfilled, (state,action) => {
+            state.searchProducts = action.payload;
+        })
     },
     
 })
