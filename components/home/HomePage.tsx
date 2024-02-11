@@ -22,7 +22,7 @@ const HomePage = () => {
 
     return (
         //TODO: add carousel in home page
-        <main className='py-4 space-y-10'>
+        <main className='py-4 space-y-10 lg:px-0 md:px-0 sm:px-0 px-10'>
             {
                 billboard &&
                 <>

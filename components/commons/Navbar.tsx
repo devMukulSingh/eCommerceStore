@@ -32,14 +32,14 @@ const Navbar = () => {
       <Link
         href={`/`}
         className='text-3xl font-bold'>
-        Store
+        mStore
       </Link>
       <Navlinks />
       <section className='flex items-center gap-5 ml-auto'>
-        <Menu 
+        <Menu
           className='xl:hidden lg:hidden md:hidden block ml-auto'
-          onClick={ () => dispatch(setOpenSidebar())}
-          />
+          onClick={() => dispatch(setOpenSidebar())}
+        />
         <ThemeToggle />
         <button
           onClick={() => router.push('/cart')}
