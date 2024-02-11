@@ -15,7 +15,9 @@ export interface Icategory{
 }
 export interface Ibillboard{
     label: string,
-    imageUrl : string,
+    images : {
+        url:string
+    }[],
     id: string,
     storeId : string,
     createdAt : string

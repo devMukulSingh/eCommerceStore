@@ -7,18 +7,20 @@ import { useEffect } from "react";
 import ProductCard from "../commons/ProductCard";
 import { Iproducts } from "@/types";
 import Filters from "./Filters";
+import HomeCarousel from "./HomeCarousel";
 
 const HomePage = () => {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(getBillboard("c7c4ce51-ca94-42fd-8c32-42a3531c647b"));
+        dispatch(getBillboard("17130cf5-0a55-4091-a16e-fc304b2e8790"));
         dispatch(getProducts());
     }, [])
     const billboard = useAppSelector(state => state.ecomm.billboard);
+    console.log(billboard);
+
     const products: Iproducts[] = useAppSelector(state => state.ecomm.products);
 
-    console.log(products);
 
     return (
         //TODO: add carousel in home page
@@ -26,13 +28,14 @@ const HomePage = () => {
             {
                 billboard &&
                 <>
-                    <figure className="relative aspect-video w-full lg:h-[25rem] md:h-[30rem] sm:h-[35rem]">
+                    <HomeCarousel/>
+                    {/* <figure className="relative aspect-video w-full lg:h-[25rem] md:h-[30rem] sm:h-[35rem]">
                         <Image
                             className="object-cover  object-top"
                             src={billboard.imageUrl}
                             alt="billboardImage"
                             fill />
-                    </figure>
+                    </figure> */}
                     <section className="flex gap-10 md:px-8 sm:px-5">
                         <Filters />
                         <div className="">
