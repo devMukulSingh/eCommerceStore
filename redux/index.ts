@@ -6,6 +6,8 @@ import { getProducts } from "./reducers/getProducts";
 import { getProduct } from "./reducers/getProduct";
 import toast from "react-hot-toast";
 import { getSearchProducts } from "./reducers/getSearchProducts";
+import { getBrands } from "./reducers/getBrands";
+import { getFilteredProducts } from "./reducers/getFilteredProducts";
 
 const initialState:IinitialState = {
     categories:[],
@@ -14,6 +16,8 @@ const initialState:IinitialState = {
     product : null,
     openSidebar : false,
     searchProducts:[],
+    brands : [],
+    filteredProducts:[],
     cartProducts : (typeof window!=='undefined' && localStorage.length > 0) ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
 }
 
@@ -62,7 +66,13 @@ const ecommSlice = createSlice({
         });
         builder.addCase( getSearchProducts.fulfilled, (state,action) => {
             state.searchProducts = action.payload;
-        })
+        });
+        builder.addCase( getBrands.fulfilled, (state,action) => {
+            state.brands = action.payload;
+        });
+        builder.addCase( getFilteredProducts.fulfilled ,( state,action) => {
+            state.filteredProducts = action.payload;
+        });
     },
     
 })

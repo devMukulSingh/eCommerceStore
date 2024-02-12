@@ -1,14 +1,33 @@
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Iproducts } from "@/types";
-import Filters from "./Filters";
 import ProductCard from "../commons/ProductCard";
+import { useEffect } from "react";
+import { getFilteredProducts } from "@/redux/reducers/getFilteredProducts";
+import { useSearchParams } from "next/navigation";
+import Filter from "../category/Filter";
+import { getBrands } from "@/redux/reducers/getBrands";
 
 
 const FeaturedSection = () => {
-    const products: Iproducts[] = useAppSelector(state => state.ecomm.products);
+
+    const searchParams = useSearchParams();
+    const brandId = searchParams.get('brandId');
+    const dispatch = useAppDispatch();
+
+    useEffect( () => {
+        dispatch(getBrands());
+    })
+    useEffect(() => {
+        dispatch(getFilteredProducts({
+            brandId,
+        }));
+    }, [brandId]);
+
+    const brands = useAppSelector( state => state.ecomm.brands);
+    const products: Iproducts[] = useAppSelector(state => state.ecomm.filteredProducts);
     return (
         <main className="flex gap-10 md:px-8 sm:px-5">
-            <Filters />
+            <Filter filter={brands} heading="Brands" valueKey="brandId" />
             <div className="">
                 <h1 className="text-3xl font-bold underline text-center lg:text-left md:text-left ">
                     Featured Collection

@@ -6,6 +6,13 @@ export interface IinitialState{
     cartProducts : Iproducts[] ,
     openSidebar : boolean,
     searchProducts : Iproducts[],
+    brands : Ibrand[],
+    filteredProducts:[],
+}
+export interface Ibrand{
+    name:string,
+    id:string,
+    storeId:string,
 }
 export interface Icategory{
     name:string,
@@ -38,4 +45,5 @@ export interface Iproducts{
     date : string,
     description: string[],
     ratings: number,
+    brandId:string,
 }
