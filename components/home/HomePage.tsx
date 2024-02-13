@@ -9,19 +9,21 @@ const HomePage = () => {
 
     const dispatch = useAppDispatch();
 
-    useEffect( () => {
+    useEffect(() => {
         dispatch(getBillboard("17130cf5-0a55-4091-a16e-fc304b2e8790"));
-    },[]);
+    }, []);
 
 
     const billboard = useAppSelector(state => state.ecomm.billboard);
+
+
 
     return (
         <main className='py-4 space-y-10 lg:px-0 md:px-0 sm:px-0 px-10'>
             {
                 billboard &&
                 <>
-                    <HomeCarousel/>
+                    <HomeCarousel />
                     <FeaturedSection/>
                 </>
             }

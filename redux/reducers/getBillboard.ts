@@ -1,11 +1,12 @@
-import { BASE_URL } from "@/constants/constants";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { API_BASE_URL } from '@/constants/base_url'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
+export const getBillboard = createAsyncThunk(
+  'ecommApp/getBillboard',
 
-export const getBillboard = createAsyncThunk( "ecommApp/getBillboard", 
-
-    async(billboardId: string) => {
-        const { data } = await axios.get(`${BASE_URL}/billboard/${billboardId}`);
-        return data.billboard;
-    })
+  async (billboardId: string) => {
+    const { data } = await axios.get(`${API_BASE_URL}/billboard/${billboardId}`)
+    return data.billboard
+  }
+)

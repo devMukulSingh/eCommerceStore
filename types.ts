@@ -8,6 +8,12 @@ export interface IinitialState{
     searchProducts : Iproducts[],
     brands : Ibrand[],
     filteredProducts:[],
+    stores : Istore[],
+    apiBaseUrl : '',
+}
+export interface Istore{
+    name:string,
+    id:string,
 }
 export interface Ibrand{
     name:string,

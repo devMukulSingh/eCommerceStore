@@ -8,9 +8,11 @@ import toast from "react-hot-toast";
 import { getSearchProducts } from "./reducers/getSearchProducts";
 import { getBrands } from "./reducers/getBrands";
 import { getFilteredProducts } from "./reducers/getFilteredProducts";
+import { getStores } from "./reducers/getStores";
 
 const initialState:IinitialState = {
     categories:[],
+    apiBaseUrl : '',
     billboard : null,
     products : [],
     product : null,
@@ -18,6 +20,7 @@ const initialState:IinitialState = {
     searchProducts:[],
     brands : [],
     filteredProducts:[],
+    stores : [],
     cartProducts : (typeof window!=='undefined' && localStorage.length > 0) ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
 }
 
@@ -48,6 +51,9 @@ const ecommSlice = createSlice({
         },
         setOpenSidebar : ( state) => {
             state.openSidebar = !state.openSidebar
+        },
+        setApiBasUrl : (state,action) => {
+            state.apiBaseUrl = action.payload;
         }
         
     },
@@ -73,6 +79,9 @@ const ecommSlice = createSlice({
         builder.addCase( getFilteredProducts.fulfilled ,( state,action) => {
             state.filteredProducts = action.payload;
         });
+        builder.addCase( getStores.fulfilled , (state,action) => {
+            state.stores = action.payload;
+        })
     },
     
 })
@@ -83,7 +92,7 @@ export const store = configureStore({
     }
 });
 
-export const{ setCartProduct,removeCartProduct,clearCartProducts,setOpenSidebar } = ecommSlice.actions
+export const{ setCartProduct,removeCartProduct,clearCartProducts,setOpenSidebar,setApiBasUrl } = ecommSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;

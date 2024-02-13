@@ -1,9 +1,11 @@
 import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link"
+import { useParams } from "next/navigation";
 
 
 const Footer = () => {
   const categories = useAppSelector((state) => state.ecomm.categories);
+  const { storeId } = useParams();
   const socialLinks = [
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",
@@ -24,7 +26,7 @@ const Footer = () => {
   ];
   const aboutLinks = [
     {
-      href: "/",
+      href: `/`,
       title: 'About Us'
     },
     {
@@ -77,7 +79,7 @@ const Footer = () => {
             {
               categories && categories?.map((category) => (
                 <li key={category.id} >
-                  <Link href={`/category/${category.id}`}>
+                  <Link href={`/${storeId}/category/${category.id}`}>
                     {category.name}
                   </Link>
                 </li>

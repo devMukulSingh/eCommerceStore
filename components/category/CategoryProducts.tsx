@@ -27,11 +27,8 @@ const CategoryProducts = () => {
         ));
     }, [brandId]);
 
-    // const products = useAppSelector( state => state.ecomm.products);
-    // const filteredProducts = products.filter( item => item.categoryId === categoryId);
     const brands = useAppSelector(state => state.ecomm.brands);
     const filteredProducts = useAppSelector(state => state.ecomm.filteredProducts);
-    console.log(filteredProducts);
 
 
     return (

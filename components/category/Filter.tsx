@@ -32,7 +32,7 @@ const Filter: React.FC<FilterProps> = ({
             url: window.location.href,
             query
             }, { skipNull:true});
-        router.push(url);
+        router.push(url,{ scroll:false});
     }
     return (
         <main className="flex flex-col gap-3 py-5 pl-5 pr-15 xl:pr-20 border h-fit mt-10">

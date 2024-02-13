@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Menu, ShoppingBag } from "lucide-react"
 import { getCategories } from '@/redux/reducers/getCategories';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { ThemeToggle } from './ThemeToggle';
 import Navlinks from './Navlinks';
@@ -25,6 +25,7 @@ const Navbar = () => {
 
   const cartProducts = useAppSelector(state => state.ecomm.cartProducts);
   const router = useRouter();
+  const { storeId } = useParams();
 
   if (!isMounted) return null;
 
@@ -46,7 +47,7 @@ const Navbar = () => {
           <ThemeToggle />
         </div>
         <button
-          onClick={() => router.push('/cart')}
+          onClick={() => router.push(`/${storeId}/cart`)}
           className=" 
               px-2
               py-1

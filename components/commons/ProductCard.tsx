@@ -7,6 +7,7 @@ import { setCartProduct } from "@/redux"
 import { useAppDispatch } from "@/redux/hooks"
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
+import { useParams } from "next/navigation"
 
 
 interface ProductsPageProps {
@@ -18,14 +19,14 @@ const ProductCard: React.FC<ProductsPageProps> = ({
 }) => {
 
   const dispatch = useAppDispatch();
-
+  const { storeId } = useParams();
   const handleAddToCart = () => {
     dispatch(setCartProduct(product));
   }
 
   return (
     <main className="relative lg:m-0 md:m-0 mx-auto ">
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/${storeId}/product/${product.id}`}>
         <section
           className="
           h-[28rem]
