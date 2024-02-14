@@ -1,6 +1,4 @@
 "use client"
-import { setCartProduct } from "@/redux";
-import { useAppDispatch } from "@/redux/hooks";
 import { Iproducts } from "@/types"
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -11,7 +9,8 @@ import axios from "axios";
 import { API_BASE_URL } from "@/constants/base_url";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { setCartProduct } from "@/redux";
+import { useAppDispatch } from "@/redux/hooks";
 
 interface ProductDetailsProps {
     product: Iproducts
@@ -22,8 +21,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
 }) => {
 
     const [loading, setLoading] = useState(false);
-    const dispatch = useAppDispatch();
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const handleAddToCart = () => {
         dispatch(setCartProduct(product));

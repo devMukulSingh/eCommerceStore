@@ -10,22 +10,21 @@ import { ThemeToggle } from './ThemeToggle';
 import Navlinks from './Navlinks';
 import { setOpenSidebar } from '@/redux';
 import SearchBar from './SearchBar';
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, useAuth } from '@clerk/nextjs';
+import { getProducts } from '@/hooks/UseCart';
 
 const Navbar = () => {
 
   const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    dispatch(getCategories());
-  }, []);
-
-
-  const cartProducts = useAppSelector(state => state.ecomm.cartProducts);
-  const router = useRouter();
   const { storeId } = useParams();
+  const router = useRouter();
+  const cartProducts = useAppSelector( state => state.ecomm.cartProducts);  
+  
+      useEffect(() => {
+        setIsMounted(true);
+        dispatch(getCategories());
+      }, []);
 
   if (!isMounted) return null;
 

@@ -3,8 +3,8 @@ import { Iproducts } from "@/types"
 import Image from "next/image"
 import { Button } from "../ui/button"
 import { Trash } from "lucide-react"
-import { useAppDispatch } from "@/redux/hooks"
 import { removeCartProduct } from "@/redux"
+import { useAppDispatch } from "@/redux/hooks"
 
 interface CartItemProps{
     cartItem : Iproducts
@@ -12,9 +12,7 @@ interface CartItemProps{
 const CartItem:React.FC<CartItemProps> = ({
     cartItem
 }) => {
-
     const dispatch = useAppDispatch();
-
     const handleRemoveFromCart = () => {
         dispatch(removeCartProduct(cartItem.id));
     }
@@ -46,4 +44,4 @@ const CartItem:React.FC<CartItemProps> = ({
   )
 }
 
-export default CartItem
+export default CartItem;

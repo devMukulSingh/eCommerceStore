@@ -3,13 +3,12 @@ export interface IinitialState{
     billboard : Ibillboard | null ,
     products : Iproducts[],
     product: Iproducts | null,
-    cartProducts : Iproducts[] ,
     openSidebar : boolean,
     searchProducts : Iproducts[],
     brands : Ibrand[],
     filteredProducts:[],
     stores : Istore[],
-    apiBaseUrl : '',
+    cartProducts : Iproducts[],
 }
 export interface Istore{
     name:string,

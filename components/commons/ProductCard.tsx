@@ -3,11 +3,12 @@ import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
-import { setCartProduct } from "@/redux"
 import { useAppDispatch } from "@/redux/hooks"
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { useParams } from "next/navigation"
+import toast from "react-hot-toast"
+import { setCartProduct } from "@/redux"
 
 
 interface ProductsPageProps {
@@ -18,8 +19,9 @@ const ProductCard: React.FC<ProductsPageProps> = ({
   product
 }) => {
 
-  const dispatch = useAppDispatch();
   const { storeId } = useParams();
+  const dispatch = useAppDispatch();
+
   const handleAddToCart = () => {
     dispatch(setCartProduct(product));
   }

@@ -1,14 +1,13 @@
 import { Iproducts } from '@/types'
 import CartItem from "@/components/cart/CartItem";
 import EmptyCart from './EmptyCart';
-import { useEffect, useState } from 'react';
 
 interface CartProps{
-    cartItems:Iproducts[]
+    cartProducts:Iproducts[]
 }
 
 const Cart:React.FC<CartProps> = ({
-    cartItems
+    cartProducts
 }) => {
 
   return (
@@ -16,8 +15,8 @@ const Cart:React.FC<CartProps> = ({
       <h1 className="text-3xl font-semibold">Shopping Cart</h1>
       <hr/>
       {
-        cartItems && cartItems.length > 0 ?
-          cartItems && cartItems.map( (cartItem) => (
+        cartProducts && cartProducts.length > 0 ?
+          cartProducts && cartProducts.map( (cartItem) => (
             <CartItem cartItem = {cartItem}/>
             ))
             :

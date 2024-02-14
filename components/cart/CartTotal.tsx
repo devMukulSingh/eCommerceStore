@@ -2,7 +2,7 @@
 import { Iproducts } from '@/types'
 import { Button } from '../ui/button'
 import axios from 'axios'
-import { BASE_URL } from '@/constants/base_url'
+import { API_BASE_URL, BASE_URL } from '@/constants/base_url'
 import { useRouter } from 'next/navigation'
 import Head from 'next/head'
 import Script from 'next/script'
@@ -10,19 +10,19 @@ import { useState } from 'react'
 import { Loader } from 'lucide-react'
 
 interface CartTotalProps {
-    cartItems: Iproducts[],
+    cartProducts: Iproducts[],
 }
 const CartTotal: React.FC<CartTotalProps> = ({
-    cartItems
+    cartProducts
 }) => {
 
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const totalPrice = cartItems.map(item => item.price).reduce((prevPrice, currPrice) => prevPrice + currPrice)
+    const totalPrice = cartProducts.map(item => item.price).reduce((prevPrice, currPrice) => prevPrice + currPrice)
 
     const handleCheckout = async () => {
 
-        // const { data } = await axios.post(`${BASE_URL}/precheckout`,{cartItems,totalPrice})
+        // const { data } = await axios.post(`${BASE_URL}/precheckout`,{cartProducts,totalPrice})
         // let config = {
         //     "root": "",
         //     "flow": "DEFAULT",
@@ -50,9 +50,9 @@ const CartTotal: React.FC<CartTotalProps> = ({
         //     });
 
         setLoading(true);
-        const productIds = cartItems.map(item => item.id);
+        const productIds = cartProducts.map(item => item.id);
         try {
-            const { data } = await axios.post(`${BASE_URL}/checkout`, { data: productIds });
+            const { data } = await axios.post(`${API_BASE_URL}/checkout`, { data: productIds });
             router.push(data.url);
         }
         catch (e) {
@@ -71,7 +71,7 @@ const CartTotal: React.FC<CartTotalProps> = ({
                     <h1 className='text-2xl font underline -semibold'>Subtotal</h1>
                     <div className='space-y-2'>
                         {
-                            cartItems && cartItems.map((item) => (
+                            cartProducts && cartProducts.map((item) => (
                                 <ul>
                                     <li>₹{item.price}</li>
                                 </ul>

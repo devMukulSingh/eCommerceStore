@@ -1,99 +1,115 @@
-import { IinitialState } from "@/types";
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { getCategories } from "./reducers/getCategories";   
-import { getBillboard } from "./reducers/getBillboard";
-import { getProducts } from "./reducers/getProducts";
-import { getProduct } from "./reducers/getProduct";
-import toast from "react-hot-toast";
-import { getSearchProducts } from "./reducers/getSearchProducts";
-import { getBrands } from "./reducers/getBrands";
-import { getFilteredProducts } from "./reducers/getFilteredProducts";
-import { getStores } from "./reducers/getStores";
+import { IinitialState } from '@/types'
+import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { getCategories } from './reducers/getCategories'
+import { getBillboard } from './reducers/getBillboard'
+import { getProducts } from './reducers/getProducts'
+import { getProduct } from './reducers/getProduct'
+import toast from 'react-hot-toast'
+import { getSearchProducts } from './reducers/getSearchProducts'
+import { getBrands } from './reducers/getBrands'
+import { getFilteredProducts } from './reducers/getFilteredProducts'
+import { getStores } from './reducers/getStores'
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+import { combineReducers } from '@reduxjs/toolkit'
 
-const initialState:IinitialState = {
-    categories:[],
-    apiBaseUrl : '',
-    billboard : null,
-    products : [],
-    product : null,
-    openSidebar : false,
-    searchProducts:[],
-    brands : [],
-    filteredProducts:[],
-    stores : [],
-    cartProducts : (typeof window!=='undefined' && localStorage.length > 0) ? JSON.parse(localStorage.getItem('cartProducts')) : [] ,
+const userEmail = localStorage.getItem('userEmail');
+
+const initialState: IinitialState = {
+  categories: [],
+  billboard: null,
+  products: [],
+  product: null,
+  openSidebar: false,
+  searchProducts: [],
+  brands: [],
+  filteredProducts: [],
+  stores: [],
+  cartProducts : userEmail && JSON.parse(localStorage.getItem(userEmail) || "[]") || [] ,
 }
-
 const ecommSlice = createSlice({
-    name:'ecomm',
-    initialState,
-    reducers:{
-
-        setCartProduct : (state,action) => {
-            if(state.cartProducts && !state.cartProducts.find( item => item.id === action.payload.id )){
-                state.cartProducts.push(action.payload);
-                const products = JSON.stringify(state.cartProducts);
-                localStorage.setItem('cartProducts', products);
-                toast.success('Item added to Cart');
+  name: 'ecomm',
+  initialState,
+  reducers: {
+    setCartProduct: (state, action) => {
+        if (state.cartProducts && userEmail && !state.cartProducts.find(item => item.id === action.payload.id)) {
+            state.cartProducts.push(action.payload)
+            const products = JSON.stringify(state.cartProducts)
+            localStorage.setItem(userEmail, products)
+            toast.success('Item added to Cart');
+      } else if(state.cartProducts.find(item => item.id === action.payload.id)) {
+        toast.error('Item already in cart')
+      }
+    },
+    removeCartProduct: (state, action) => {
+        if(userEmail){
+                state.cartProducts = state.cartProducts.filter(
+                item => item.id !== action.payload
+                )
+                localStorage.removeItem(userEmail);
+                localStorage.setItem('cartProducts', JSON.stringify(state.cartProducts))
             }
-            else{
-                toast.error('Item already in cart');
-            }
-        },
-        removeCartProduct : (state,action) => {
-            state.cartProducts = state.cartProducts.filter( item => item.id !== action.payload);
-            localStorage.clear();
-            localStorage.setItem('cartProducts',JSON.stringify(state.cartProducts));
-        },
-        clearCartProducts : (state) => {
-            state.cartProducts = [];
-            localStorage.clear();
-        },
-        setOpenSidebar : ( state) => {
-            state.openSidebar = !state.openSidebar
-        },
-        setApiBasUrl : (state,action) => {
-            state.apiBaseUrl = action.payload;
+    },
+    clearCartProducts: state => {
+        if(userEmail){
+            state.cartProducts = []
+            localStorage.removeItem(userEmail)
         }
-        
     },
-    extraReducers: (builder) => {
-        builder.addCase(getCategories.fulfilled, (state,action) => {
-            state.categories = action.payload;
-        });
-        builder.addCase( getBillboard.fulfilled, (state,action) => {
-            state.billboard = action.payload;
-        });
-        builder.addCase( getProducts.fulfilled, ( state,action) => {
-            state.products = action.payload;
-        });
-        builder.addCase( getProduct.fulfilled, ( state,action) => {
-            state.product = action.payload;
-        });
-        builder.addCase( getSearchProducts.fulfilled, (state,action) => {
-            state.searchProducts = action.payload;
-        });
-        builder.addCase( getBrands.fulfilled, (state,action) => {
-            state.brands = action.payload;
-        });
-        builder.addCase( getFilteredProducts.fulfilled ,( state,action) => {
-            state.filteredProducts = action.payload;
-        });
-        builder.addCase( getStores.fulfilled , (state,action) => {
-            state.stores = action.payload;
-        })
+    setOpenSidebar: state => {
+      state.openSidebar = !state.openSidebar
     },
-    
+  },
+  extraReducers: builder => {
+    builder.addCase(getCategories.fulfilled, (state, action) => {
+      state.categories = action.payload
+    })
+    builder.addCase(getBillboard.fulfilled, (state, action) => {
+      state.billboard = action.payload
+    })
+    builder.addCase(getProducts.fulfilled, (state, action) => {
+      state.products = action.payload
+    })
+    builder.addCase(getProduct.fulfilled, (state, action) => {
+      state.product = action.payload
+    })
+    builder.addCase(getSearchProducts.fulfilled, (state, action) => {
+      state.searchProducts = action.payload
+    })
+    builder.addCase(getBrands.fulfilled, (state, action) => {
+      state.brands = action.payload
+    })
+    builder.addCase(getFilteredProducts.fulfilled, (state, action) => {
+      state.filteredProducts = action.payload
+    })
+    builder.addCase(getStores.fulfilled, (state, action) => {
+      state.stores = action.payload
+    })
+  }
 })
+// const persistConfig = {
+//     key:'root',
+//     version:1,
+//     storage
+// };
+// const reducer = combineReducers({
+//     cart:cart,
+// })
+// const persistedReducer = persistReducer(persistConfig,reducer);
 
 export const store = configureStore({
-    reducer:{
-        ecomm : ecommSlice.reducer
-    }
-});
+  reducer: {
+    // persistedReducer,
+    ecomm: ecommSlice.reducer
+  }
+})
 
-export const{ setCartProduct,removeCartProduct,clearCartProducts,setOpenSidebar,setApiBasUrl } = ecommSlice.actions
+export const {
+  setCartProduct,
+  removeCartProduct,
+  clearCartProducts,
+  setOpenSidebar
+} = ecommSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch;
-
+export type AppDispatch = typeof store.dispatch

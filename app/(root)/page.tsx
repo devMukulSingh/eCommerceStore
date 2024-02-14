@@ -1,21 +1,30 @@
 "use client"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getStores } from "@/redux/reducers/getStores";
+import { useAuth, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect } from "react";
 
 
 export default function RootPage() {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();  
+    const { userId } = useAuth();
+    const {user } = useUser();
 
     useEffect(() => {
         dispatch(getStores());
     }, []);
+
     const stores = useAppSelector(state => state.ecomm.stores);
     const handleStore = async(storeId:string) => {
         await axios.post(`/api/${storeId}`);
         localStorage.setItem('storeId',storeId);
+        if(user?.primaryEmailAddress && userId){
+            const email = user.primaryEmailAddress || '';
+             localStorage.setItem('userEmail',email.toString() );
+            localStorage.setItem('userId',userId);
+        }
     }
     return (
         <>
