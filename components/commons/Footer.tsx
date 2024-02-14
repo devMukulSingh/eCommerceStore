@@ -26,15 +26,15 @@ const Footer = () => {
   ];
   const aboutLinks = [
     {
-      href: `/`,
+      href: `/${storeId}`,
       title: 'About Us'
     },
     {
-      href: "/",
+      href: `/${storeId}`,
       title: 'Contact Us'
     },
     {
-      href: "/",
+      href: `/${storeId}`,
       title: 'Careers'
     },
   ];

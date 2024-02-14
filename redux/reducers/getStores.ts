@@ -2,7 +2,7 @@ import { BASE_URL } from "@/constants/base_url";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const userId = 'user_2azTFG6cuqRyklNWlphZrKPdate';
+const userId = process.env.NEXT_PUBLIC_USER_ID;
 
 export const getStores = createAsyncThunk( "ecomm/getStores", 
 

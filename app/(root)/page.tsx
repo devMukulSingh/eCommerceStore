@@ -1,6 +1,7 @@
 "use client"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getStores } from "@/redux/reducers/getStores";
+import axios from "axios";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -12,7 +13,8 @@ export default function RootPage() {
         dispatch(getStores());
     }, []);
     const stores = useAppSelector(state => state.ecomm.stores);
-    const handleStore = (storeId:string) => {
+    const handleStore = async(storeId:string) => {
+        await axios.post(`/api/${storeId}`);
         localStorage.setItem('storeId',storeId);
     }
     return (
