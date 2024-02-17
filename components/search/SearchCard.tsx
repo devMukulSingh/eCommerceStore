@@ -1,6 +1,7 @@
 import { Iproducts } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import React from 'react'
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
@@ -12,9 +13,9 @@ interface SearchCardProps {
 const SearchCard: React.FC<SearchCardProps> = ({
     product
 }) => {
-
+    const { storeId } = useParams();
     return (
-        <Link href={`/product/${product.id}`}>
+        <Link href={`/${storeId}/product/${product.id}`}>
             <main className='flex gap-5 p-5 border '>
                 <figure className='relative w-52 h-52'>
                     <Image src={product.images[0].url} alt='productImg' fill className='object-contain object-center' />

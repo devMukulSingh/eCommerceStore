@@ -2,10 +2,12 @@
 import { Search } from 'lucide-react'
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useParams } from 'next/navigation';
 
 const SearchBar = () => {
 
     const [query, setQuery] = useState('second');
+    const { storeId } = useParams();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
@@ -14,8 +16,8 @@ const SearchBar = () => {
         <main className='flex sm:gap-5 rounded-full items-center border w-[30rem] sm:pl-10 sm:pr-5 px-3 py-2 min-w-0'>
             <input placeholder="Search..." type='text' onChange={(e) => onChange(e)} className='focus:outline-0 border-0 bg-inherit' />
             <Link href={{
-                pathname: '/search',
-                query: {query},
+                pathname: `/${storeId}/search`,
+                query: { query },
             }}
                 className='ml-auto'
             >
