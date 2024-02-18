@@ -1,10 +1,22 @@
-import { useAppSelector } from '@/redux/hooks';
+"use client"
+import { getCategories } from '@/actions/getCategories';
 import { Icategory } from '@/types';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const Navlinks = () => {
-  const categories = useAppSelector(state => state.ecomm.categories);
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect( () => {
+    const getData = async() => {
+      const res = await getCategories();
+      setCategories(res);
+    }
+    getData();
+  },[]);
+
   const { storeId } = useParams();
   return (
     <main className='gap-5 lg:flex md:flex xl:flex hidden '>

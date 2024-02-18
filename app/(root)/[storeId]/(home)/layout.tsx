@@ -6,6 +6,7 @@ import Sidebar  from "@/components/commons/Sidebar";
 
 export default function RootLayout({ children} : {children : React.ReactNode}){
     const openSidebar = useAppSelector( state => state.ecomm.openSidebar);
+    const loading = useAppSelector( state => state.ecomm.loading);
     return(
         <main>
             <Navbar/>
@@ -14,7 +15,9 @@ export default function RootLayout({ children} : {children : React.ReactNode}){
                 <Sidebar/> 
             }
             {children}
-            <Footer/>
+            {
+              !loading &&  <Footer/>
+            }
         </main>
     )
 }

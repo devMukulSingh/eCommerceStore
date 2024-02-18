@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/constants/base_url';
+import { API_BASE_URL } from '@/constants/base_url_client'
 
 import { Iproducts } from '@/types'
 import { createAsyncThunk } from '@reduxjs/toolkit'

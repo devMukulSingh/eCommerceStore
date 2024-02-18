@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import ReactStars from "react-rating-stars-component";
 import { Loader } from "lucide-react";
 import axios from "axios";
-import { API_BASE_URL } from "@/constants/base_url";
+import { API_BASE_URL } from "@/constants/base_url_client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { setCartProduct } from "@/redux";

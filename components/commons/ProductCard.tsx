@@ -1,3 +1,4 @@
+"use client"
 import { Iproducts } from "@/types"
 import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
@@ -7,7 +8,6 @@ import { useAppDispatch } from "@/redux/hooks"
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 import { useParams } from "next/navigation"
-import toast from "react-hot-toast"
 import { setCartProduct } from "@/redux"
 
 

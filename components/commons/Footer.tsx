@@ -47,7 +47,7 @@ const Footer = () => {
           <ul className="space-y-2">
             {
               aboutLinks.map((link) => (
-                <li>
+                <li key={link.title}>
                   <Link href={link.href}>
                     {link.title}
                   </Link>
@@ -61,7 +61,7 @@ const Footer = () => {
           <ul className="space-y-2">
             {
               socialLinks.map((link) => (
-                <li >
+                <li key={link.title} >
                   <a href={link.href} target="blank">
                     {link.title}
                   </a>

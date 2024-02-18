@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/constants/base_url';
+import { API_BASE_URL } from '@/constants/base_url_client'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 

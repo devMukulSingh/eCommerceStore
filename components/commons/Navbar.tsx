@@ -15,19 +15,18 @@ import { getProducts } from '@/hooks/UseCart';
 
 const Navbar = () => {
 
-  const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
+  const dispatch = useAppDispatch();
   const { storeId } = useParams();
   const router = useRouter();
   const cartProducts = useAppSelector( state => state.ecomm.cartProducts);  
+
+  useEffect( () => {
+    setIsMounted(true);
+  },[]);
+
+  if(!isMounted) return null;
   
-      useEffect(() => {
-        setIsMounted(true);
-        dispatch(getCategories());
-      }, []);
-
-  if (!isMounted) return null;
-
   return (
     <main className='p-4 h-20 border flex items-center  w-full justify-between gap-5 overflow-hidden'>
         <Link

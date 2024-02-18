@@ -9,6 +9,7 @@ export interface IinitialState{
     filteredProducts:[],
     stores : Istore[],
     cartProducts : Iproducts[],
+    loading:boolean,
 }
 export interface Istore{
     name:string,

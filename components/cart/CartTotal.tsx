@@ -2,7 +2,7 @@
 import { Iproducts } from '@/types'
 import { Button } from '../ui/button'
 import axios from 'axios'
-import { API_BASE_URL, BASE_URL } from '@/constants/base_url'
+import { API_BASE_URL, BASE_URL } from '@/constants/base_url_client'
 import { useRouter } from 'next/navigation'
 import Head from 'next/head'
 import Script from 'next/script'

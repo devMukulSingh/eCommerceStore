@@ -7,13 +7,10 @@ import { getProduct } from './reducers/getProduct'
 import toast from 'react-hot-toast'
 import { getSearchProducts } from './reducers/getSearchProducts'
 import { getBrands } from './reducers/getBrands'
-import { getFilteredProducts } from './reducers/getFilteredProducts'
 import { getStores } from './reducers/getStores'
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
-import { combineReducers } from '@reduxjs/toolkit'
 
-const userEmail = localStorage.getItem('userEmail');
+
+const userEmail = typeof window !=="undefined" && localStorage.getItem('userEmail');
 
 const initialState: IinitialState = {
   categories: [],
@@ -26,6 +23,7 @@ const initialState: IinitialState = {
   filteredProducts: [],
   stores: [],
   cartProducts : userEmail && JSON.parse(localStorage.getItem(userEmail) || "[]") || [] ,
+  loading:false,
 }
 const ecommSlice = createSlice({
   name: 'ecomm',
@@ -61,27 +59,54 @@ const ecommSlice = createSlice({
     },
   },
   extraReducers: builder => {
+
     builder.addCase(getCategories.fulfilled, (state, action) => {
       state.categories = action.payload
-    })
+    });
+
+    builder.addCase(getBillboard.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getBillboard.rejected, (state) => {
+      state.loading = false;
+    });
     builder.addCase(getBillboard.fulfilled, (state, action) => {
+      state.loading = false;
       state.billboard = action.payload
-    })
+    });
+
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.products = action.payload
-    })
+    });
+
+    builder.addCase(getProduct.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(getProduct.fulfilled, (state, action) => {
+      state.loading = false;
       state.product = action.payload
-    })
+    });
+    builder.addCase(getProduct.rejected, (state) => {
+      state.loading = false;
+    });
+
+    builder.addCase(getSearchProducts.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(getSearchProducts.fulfilled, (state, action) => {
-      state.searchProducts = action.payload
-    })
+      state.loading = false;
+      state.searchProducts = action.payload;
+    });
+    builder.addCase(getSearchProducts.rejected, (state) => {
+      state.loading = false;
+    });
+
     builder.addCase(getBrands.fulfilled, (state, action) => {
       state.brands = action.payload
-    })
-    builder.addCase(getFilteredProducts.fulfilled, (state, action) => {
-      state.filteredProducts = action.payload
-    })
+    });
+
+
+
     builder.addCase(getStores.fulfilled, (state, action) => {
       state.stores = action.payload
     })

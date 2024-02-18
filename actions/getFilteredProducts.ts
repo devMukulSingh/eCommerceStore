@@ -1,18 +1,25 @@
-import { API_BASE_URL } from '@/constants/base_url';
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { getApiBaseUrl } from '@/constants/base_url_server'
 import { Iproducts } from '@/types'
+import axios from 'axios'
 
-export interface Ifilters {
+interface IgetFilteredArgs {
   categoryId?: string | null
-  brandId: string | null
+  brandId?: string | null
 }
 
-export const getFilteredProducts = createAsyncThunk(
-  'ecomm/getFilteredProducts',
+export const getFilteredProducts = async ({
+  categoryId,
+  brandId
+}: IgetFilteredArgs) => {
+  try {
 
-  async ({ categoryId, brandId }: Ifilters) => {
-    const { data } = await axios.get(`${API_BASE_URL}/product`)
+    const {API_BASE_URL} = await getApiBaseUrl();
+    console.log(API_BASE_URL);
+  
+    const { data } = await axios.get(`${API_BASE_URL}/product`);
+    console.log(data);
+    
+
     const filteredProducts = data.products.filter((product: Iproducts) => {
       if (brandId && categoryId) {
         return categoryId === product.categoryId && brandId === product.brandId
@@ -26,6 +33,10 @@ export const getFilteredProducts = createAsyncThunk(
         return product.isFeatured === true
       }
     })
+    console.log(filteredProducts)
+
     return filteredProducts
+  } catch (e) {
+    console.log(e);
   }
-)
+}

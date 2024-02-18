@@ -1,19 +1,26 @@
 "use client"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext } from '../ui/carousel'
-import { useAppSelector } from '@/redux/hooks'
+import { Ibillboard } from '@/types'
 import Image from 'next/image'
 
-const HomeCarousel = () => {
+interface HomeCarouselProps{
+  billboard:Ibillboard
+}
 
-  const images = useAppSelector(state => state.ecomm.billboard)?.images;
+const HomeCarousel:React.FC<HomeCarouselProps> = ({
+  billboard
+}) => {
 
   return (
     <main className='relative'>
       <Carousel className='sm:px-10 p-0'>
         <CarouselContent>
           {
-            images && images.map((image: { url: string }) => (
-              <CarouselItem className='relative w-full h-[15rem] sm:h-[calc(100vh-10rem)] rounded-xl'>
+            billboard.images && billboard.images.map((image: { url: string },index) => (
+              <CarouselItem 
+                key={index} 
+                className='relative w-full h-[15rem] sm:h-[calc(100vh-10rem)] rounded-xl'
+                >
                 <Image src={image.url} fill alt='carouselImg' className='object-center object-contain md:object-cover' />
               </CarouselItem>
             ))
