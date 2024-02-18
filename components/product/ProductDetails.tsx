@@ -2,7 +2,7 @@ import { Iproducts } from "@/types"
 import Image from "next/image";
 
 import ProductDetailsButtons from "./ProductDetailsButtons";
-import Ratings from "./Ratings";
+import Ratings from "@/components/commons/Ratings";
 import DetailsSection from "./DetailsSection";
 
 interface ProductDetailsProps {
@@ -31,7 +31,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                     <h1 className="text-2xl font-medium">{product?.name}</h1>
                     <h1 className="text-xl font-semibold">₹{product?.price}</h1>
                 
-                    <Ratings product={product}/>
+                    <Ratings value={product.ratings}/>
 
                     <hr />
                     <DetailsSection product={product}/>

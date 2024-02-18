@@ -1,20 +1,19 @@
 "use client"
-import { Iproducts } from "@/types";
 //@ts-ignore
 import ReactStars from "react-rating-stars-component";
 
 interface RatingsProps{
-    product:Iproducts
+    value:number
 }
 const Ratings:React.FC<RatingsProps> = ({
-    product
+    value
 }) => {
     return (
         <div className="flex items-center gap-2">
             <h1 className="font-semibold text-neutral-400">Ratings</h1>
             <ReactStars
                 count={5}
-                value={product.ratings}
+                value={value}
                 edit={false}
                 size={24}
                 isHalf={true}

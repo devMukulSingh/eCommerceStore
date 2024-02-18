@@ -1,6 +1,3 @@
-"use client"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import {  useSearchParams } from "next/navigation";
 import SearchCard from "./SearchCard";
 import { getSearchProducts } from "@/redux/reducers/getSearchProducts";
 import { useEffect } from "react";
