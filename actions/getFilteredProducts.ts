@@ -14,12 +14,9 @@ export const getFilteredProducts = async ({
   try {
 
     const {API_BASE_URL} = await getApiBaseUrl();
-    console.log(API_BASE_URL);
-  
-    const { data } = await axios.get(`${API_BASE_URL}/product`);
-    console.log(data);
-    
 
+    const { data } = await axios.get(`${API_BASE_URL}/product`);
+    
     const filteredProducts = data.products.filter((product: Iproducts) => {
       if (brandId && categoryId) {
         return categoryId === product.categoryId && brandId === product.brandId

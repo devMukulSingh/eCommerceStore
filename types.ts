@@ -1,13 +1,5 @@
 export interface IinitialState{
-    categories: Icategory[],
-    billboard : Ibillboard | null ,
-    products : Iproducts[],
-    product: Iproducts | null,
     openSidebar : boolean,
-    searchProducts : Iproducts[],
-    brands : Ibrand[],
-    filteredProducts:[],
-    stores : Istore[],
     cartProducts : Iproducts[],
     loading:boolean,
 }

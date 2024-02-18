@@ -1,31 +1,11 @@
-"use client"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getStores } from "@/redux/reducers/getStores";
-import { useAuth, useUser } from "@clerk/nextjs";
-import axios from "axios";
-import Link from "next/link";
-import { useEffect } from "react";
+import { getStores } from "@/actions/getStores";
+import Stores from "@/components/root/stores";
+import { Istore } from "@/types";
 
+export default async function RootPage() {
 
-export default function RootPage() {
-    const dispatch = useAppDispatch();  
-    const { userId } = useAuth();
-    const {user } = useUser();
-
-    useEffect(() => {
-        dispatch(getStores());
-    }, []);
-
-    const stores = useAppSelector(state => state.ecomm.stores);
-    const handleStore = async(storeId:string) => {
-        await axios.post(`/api/${storeId}`);
-        localStorage.setItem('storeId',storeId);
-        if(user?.primaryEmailAddress && userId){
-            const email = user.primaryEmailAddress || '';
-             localStorage.setItem('userEmail',email.toString() );
-            localStorage.setItem('userId',userId);
-        }
-    }
+    const stores:Istore[] = await getStores();
+    
     return (
         <>
             <main className="flex justify-center items-center w-screen h-screen">
@@ -35,12 +15,7 @@ export default function RootPage() {
 
                         {
                             stores && stores.map((store) => (
-                                <Link
-                                    onClick={ () => handleStore(store.id) }
-                                    href={`/${store.id}`}
-                                >
-                                    {store.name}
-                                </Link>
+                                <Stores store={store}/>
                             ))
                         }
                     </div>

@@ -22,7 +22,6 @@ const FeaturedSection:React.FC<FeaturedSectionProps> = async ({
     const products: Iproducts[] = await getFilteredProducts({
         brandId,
     });
-    console.log(products);
 
     return (
         <main className="flex gap-10 md:px-8 sm:px-5">
