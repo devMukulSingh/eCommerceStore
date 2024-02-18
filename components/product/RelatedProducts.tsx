@@ -1,26 +1,20 @@
-"use client";
-
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getProducts } from "@/redux/reducers/getProducts";
-import { useEffect } from "react";
+import { getFilteredProducts } from "@/actions/getFilteredProducts";
 import ProductCard from "../commons/ProductCard";
-import { useParams } from "next/navigation";
+import { Iproducts } from "@/types";
 
 interface RealtedProductsProps{
-  categoryId : string
+  categoryId : string,
+  productId : string
 }
-const RelatedProducts:React.FC<RealtedProductsProps> = (
-  { categoryId}
+const RelatedProducts:React.FC<RealtedProductsProps> = async(
+  { categoryId,productId}
 ) => {
   
-  const { productId } = useParams();
-  const dispatch = useAppDispatch();
-  useEffect( () => {
-    dispatch(getProducts());
-  },[categoryId]);
+  const products = await getFilteredProducts({
+    categoryId,
+  });
 
-  const products = useAppSelector( state => state.ecomm.products);
-  const relatedProducts = products.filter(product => product.categoryId === categoryId && product.id !== productId );
+  const relatedProducts:Iproducts[] = products.filter( (product:Iproducts) => product.categoryId === categoryId && product.id !== productId );
 
   return (
     <main className="px-5 lg:px-20 md:px-10">

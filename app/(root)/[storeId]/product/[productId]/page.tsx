@@ -1,15 +1,24 @@
-import ProductPage from "@/components/product/ProductPage";
+import ProductDetails from '@/components/product/ProductDetails';
+import RelatedProducts from '@/components/product/RelatedProducts';
+import { getProduct } from '@/actions/getProduct';
 
-
-const ProductDetails = (
-    {params} : { params: { productId : string}}
+const ProductPage = async (
+  { params }: { params: { productId: string } }
 ) => {
-    
+
+  const { productId } = params;
+
+  const product = await getProduct(productId);
+
   return (
-    <main>
-        <ProductPage/>
-    </main>
+
+    <div className='w-full flex flex-col gap-5 px-10 py-10'>
+      <ProductDetails product={product} />
+      <hr className='' />
+      <RelatedProducts productId={productId} categoryId={product.categoryId} />
+    </div>
+
   )
 }
 
-export default ProductDetails
+export default ProductPage
