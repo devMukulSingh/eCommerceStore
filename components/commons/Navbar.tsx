@@ -3,15 +3,13 @@ import Link from 'next/link';
 import React, { useState } from 'react'
 import { useEffect } from "react";
 import { Menu, ShoppingBag } from "lucide-react"
-import { getCategories } from '@/redux/reducers/getCategories';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useParams, useRouter } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import Navlinks from './Navlinks';
 import { setOpenSidebar } from '@/redux';
 import SearchBar from './SearchBar';
-import { UserButton, useAuth } from '@clerk/nextjs';
-import { getProducts } from '@/hooks/UseCart';
+import { UserButton } from '@clerk/nextjs';
 
 const Navbar = () => {
 
@@ -26,7 +24,7 @@ const Navbar = () => {
   },[]);
 
   if(!isMounted) return null;
-  
+
   return (
     <main className='p-4 h-20 border flex items-center  w-full justify-between gap-5 overflow-hidden'>
         <Link
