@@ -2,7 +2,7 @@
 import { Istore } from "@/types"
 import { useAuth, useUser } from "@clerk/nextjs";
 import axios from "axios";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 interface StoreProps{
     store:Istore
@@ -17,9 +17,10 @@ const Stores:React.FC<StoreProps> = ({
     const {user } = useUser();
 
     const handleStore = async(storeId:string) => {
+        //setting storeId in cookies
+        await axios.post(`/api/storeId/${storeId}`);
 
-        await axios.post(`/api/${storeId}`);
-        
+        //setting storeId in localstorage
         if(typeof window !=="undefined"){
             localStorage.setItem('storeId',storeId);
             if(user?.primaryEmailAddress && userId){

@@ -30,7 +30,6 @@ export const getFilteredProducts = async ({
         return product.isFeatured === true
       }
     })
-    console.log(filteredProducts)
 
     return filteredProducts
   } catch (e) {

@@ -5,5 +5,5 @@ if(typeof window !=="undefined"){
     storeId = localStorage.getItem('storeId');
 }
 
-export const API_BASE_URL = `${BASE_URL}/api/${storeId}`;
+export const API_BASE_URL_CLIENT = `${BASE_URL}/api/${storeId}`;
 

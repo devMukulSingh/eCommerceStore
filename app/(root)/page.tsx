@@ -1,6 +1,7 @@
 import { getStores } from "@/actions/getStores";
-import Stores from "@/components/root/stores";
+import Stores from "@/components/root/Stores";
 import { Istore } from "@/types";
+
 
 export default async function RootPage() {
 

@@ -3,9 +3,11 @@ import axios from "axios"
 
 
 export const getBrands = async() => {
+
     const { API_BASE_URL } = await getApiBaseUrl();
-    console.log("baseUrl",API_BASE_URL)
+
     const { data } = await axios.get(`${API_BASE_URL}/brand`)
+    
     return data.brands
 
 }

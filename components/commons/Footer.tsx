@@ -1,11 +1,15 @@
-import { useAppSelector } from "@/redux/hooks";
+import { getCategories } from "@/actions/getCategories";
+import { getStoreId } from "@/actions/getStoreId";
+import { Icategory } from "@/types";
 import Link from "next/link"
-import { useParams } from "next/navigation";
 
 
-const Footer = () => {
-  const categories = useAppSelector((state) => state.ecomm.categories);
-  const { storeId } = useParams();
+const Footer = async() => {
+
+  const {storeId} = await getStoreId();
+
+  const categories:Icategory[] = await getCategories();
+  
   const socialLinks = [
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",

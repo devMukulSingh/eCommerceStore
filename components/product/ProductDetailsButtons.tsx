@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
 import { setCartProduct } from '@/redux';
 import axios from 'axios';
-import { API_BASE_URL } from '@/constants/base_url_client';
+import { API_BASE_URL_CLIENT } from '@/constants/base_url_client';
 import { Iproducts } from '@/types';
 import { Loader } from 'lucide-react';
 
@@ -27,7 +27,7 @@ const ProductDetailsButtons:React.FC<ProductDetailsButtonsProps> = ({
     const handleBuyNow = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.post(`${API_BASE_URL}/checkout`, { data: [product.id] });
+            const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, { data: [product.id] });
             router.push(data.url);
         }
         catch (e) {

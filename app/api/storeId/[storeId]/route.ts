@@ -10,7 +10,9 @@ export async function POST(
         if (!storeId)  return NextResponse.json({ error:'StoreId is required'},{status:400});
         
         const response = NextResponse.json({ msg: 'storeId set'}, { status:200});
-        response.cookies.set('storeId',storeId);
+        response.cookies.set('storeId',storeId,{
+            httpOnly:true
+        });
         
         return response;
     }

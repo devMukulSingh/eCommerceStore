@@ -9,6 +9,7 @@ import { useAppDispatch } from "@/redux/hooks"
 import ReactStars from "react-rating-stars-component";
 import { useParams } from "next/navigation"
 import { setCartProduct } from "@/redux"
+import Ratings from "./Ratings"
 
 
 interface ProductsPageProps {
@@ -56,19 +57,7 @@ const ProductCard: React.FC<ProductsPageProps> = ({
           <div className="flex flex-col gap-1 mt-auto">
             <h1 className="text-lg font-medium line-clamp-2">{product.name}</h1>
             <h1 className="text-neutral-400 ">₹{product.price}</h1>
-            <div className="">
-              <ReactStars
-                count={5}
-                value={product.ratings}
-                edit={false}
-                size={24}
-                isHalf={true}
-                emptyIcon={<i className="far fa-star"></i>}
-                halfIcon={<i className="fa fa-star-half-alt"></i>}
-                fullIcon={<i className="fa fa-star"></i>}
-                activeColor="#ffd700"
-              />
-            </div>
+            <Ratings value={product.ratings}/>
           </div>
         </section>
       </Link>

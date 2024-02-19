@@ -13,7 +13,7 @@ const Ratings:React.FC<RatingsProps> = ({
             <h1 className="font-semibold text-neutral-400">Ratings</h1>
             <ReactStars
                 count={5}
-                value={value}
+                value={Number(value)}
                 edit={false}
                 size={24}
                 isHalf={true}

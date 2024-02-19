@@ -2,7 +2,7 @@
 import { Iproducts } from '@/types'
 import { Button } from '../ui/button'
 import axios from 'axios'
-import { API_BASE_URL, BASE_URL } from '@/constants/base_url_client'
+import { API_BASE_URL_CLIENT } from '@/constants/base_url_client'
 import { useRouter } from 'next/navigation'
 import Head from 'next/head'
 import Script from 'next/script'
@@ -52,7 +52,7 @@ const CartTotal: React.FC<CartTotalProps> = ({
         setLoading(true);
         const productIds = cartProducts.map(item => item.id);
         try {
-            const { data } = await axios.post(`${API_BASE_URL}/checkout`, { data: productIds });
+            const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, { data: productIds });
             router.push(data.url);
         }
         catch (e) {
@@ -66,7 +66,7 @@ const CartTotal: React.FC<CartTotalProps> = ({
         <>
             <Head><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" /></Head>
             <Script type="application/javascript" src="{HOST}/merchantpgpui/checkoutjs/merchants/{MID}.js" crossOrigin="anonymous"></Script>
-            <main className='h-screen lg:ml-auto '>
+            <main className=' lg:ml-auto '>
                 <section className='p-5 w-[25rem] border flex flex-col items-center gap-5'>
                     <h1 className='text-2xl font underline -semibold'>Subtotal</h1>
                     <div className='space-y-2'>
