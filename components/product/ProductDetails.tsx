@@ -17,7 +17,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
 
         <main className="flex gap-5 lg:flex-row flex-col ">
 
-            <figure className="relative w-[30rem] h-[35rem]">
+            <figure className="relative sm:w-[30rem] sm:h-[35rem] w-[18rem] h-[20rem] ">
                 <Image
                     src={product?.images?.[0]?.url}
                     alt='productImage'
@@ -26,9 +26,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                 />
             </figure>
 
-            <section className="flex w-[calc(100vw-35rem)] h-full">
-                <div className="flex flex-col space-y-3 max-w-[50rem] h-fit">
-                    <h1 className="text-2xl font-medium">{product?.name}</h1>
+            <section className="flex w-full lg:w-[calc(100vw-35rem)] h-full">
+                <div className="flex flex-col space-y-3 w-full md:max-w-[50rem] h-fit">
+                    <h1 className="sm:text-2xl text-xl font-medium">{product?.name}</h1>
                     <h1 className="text-xl font-semibold">₹{product?.price}</h1>
 
                     <Ratings value={product.ratings} />

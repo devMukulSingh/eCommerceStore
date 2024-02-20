@@ -18,8 +18,8 @@ const RelatedProducts: React.FC<RealtedProductsProps> = async (
 
   return (
     <main className="px-5 lg:px-20 md:px-10">
-      <h1 className="text-3xl font-semibold underline">Related Products</h1>
-      <section className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-5">
+      <h1 className="sm:text-3xl text-2xl font-semibold underline">Related Products</h1>
+      <section className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5">
         {
           relatedProducts && relatedProducts.map(product => (
             <ProductCard product={product} key={product.id} />

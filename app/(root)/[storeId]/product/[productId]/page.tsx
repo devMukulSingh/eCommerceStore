@@ -12,7 +12,7 @@ const ProductPage = async (
 
   return (
 
-    <div className='w-full flex flex-col gap-5 px-10 py-10'>
+    <div className='w-full flex flex-col gap-5 p-5 sm:px-10 sm:py-10'>
       <ProductDetails product={product} />
       <hr className='' />
       <RelatedProducts productId={productId} categoryId={product.categoryId} />
