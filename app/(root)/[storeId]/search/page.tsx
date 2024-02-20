@@ -20,7 +20,7 @@ const SearchPage = async (
       }
       {
         searchedProducts && searchedProducts.map((product: Iproducts) => (
-          <SearchCard product={product} storeId={storeId} />
+          <SearchCard product={product} storeId={storeId} key={product.id}/>
         ))
       }
     </main>

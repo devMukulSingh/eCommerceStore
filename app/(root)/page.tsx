@@ -16,7 +16,7 @@ export default async function RootPage() {
 
                         {
                             stores && stores.map((store) => (
-                                <Stores store={store} />
+                                <Stores store={store} key={store.id}/>
                             ))
                         }
                     </div>
