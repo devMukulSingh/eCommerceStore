@@ -9,7 +9,8 @@ const initialState: IinitialState = {
   openSidebar: false,
   cartProducts:
     (userEmail && JSON.parse(localStorage.getItem(userEmail) || '[]')) || [],
-  loading: false
+  loading: false,
+  openFilters:false,
 }
 
 const ecommSlice = createSlice({
@@ -49,6 +50,9 @@ const ecommSlice = createSlice({
     },
     setOpenSidebar: state => {
       state.openSidebar = !state.openSidebar
+    },
+    setOpenFilters : state => {
+      state.openFilters = !state.openFilters
     }
   }
 })
@@ -63,7 +67,8 @@ export const {
   setCartProduct,
   removeCartProduct,
   clearCartProducts,
-  setOpenSidebar
+  setOpenSidebar,
+  setOpenFilters
 } = ecommSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>

@@ -2,22 +2,29 @@
 import qs from "query-string";
 import { Ibrand } from "@/lib/types"
 import { useRouter, useSearchParams } from "next/navigation"
+import { cn } from "@/lib/utils";
+import { FolderClosed, SidebarClose, X } from "lucide-react";
+import { setOpenFilters } from "@/redux";
+import { useAppDispatch } from "@/redux/hooks";
 
 export interface FilterProps {
     filter: Ibrand[] | null,
     heading: string,
     valueKey: string,
+    className?: string
 }
 
 const Filter: React.FC<FilterProps> = ({
     filter,
     heading,
-    valueKey
+    valueKey,
+    className
 }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
     const currentParams = searchParams.get(valueKey);
+    const dispatch = useAppDispatch();
 
 
     const handleFilter = (id: string) => {
@@ -33,11 +40,17 @@ const Filter: React.FC<FilterProps> = ({
             url: window.location.href,
             query
         }, { skipNull: true });
+
         router.push(url, { scroll: false });
+
+        if(window.screen.width < 860 ){
+            dispatch(setOpenFilters());
+        }
     }
     return (
-        <main className="hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 xl:pr-20 border h-fit mt-10">
+        <main className={cn("hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10", className)}>
             <h1 className="text-2xl font-semibold">{heading}</h1>
+            <X className="sm:hidden flex ml-auto absolute top-[20px] right-5" onClick={() => dispatch(setOpenFilters())} />
             <section className="flex flex-col gap-2">
                 {
                     filter && filter.map((f) => (
