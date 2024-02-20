@@ -11,10 +11,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { setOpenSidebar } from "@/redux"
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme()
 
+  const { setTheme } = useTheme();
+  const dispatch = useAppDispatch();
+
+  const handleToggler = (theme: string) => {
+    
+    setTheme(theme);    
+    //checking if its a mobile device, then closing the sidebar
+    if (window.screen.width < 860) {
+      dispatch(setOpenSidebar());
+    }
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,13 +37,13 @@ export function ThemeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => handleToggler("light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => handleToggler("dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => handleToggler("system")}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>
