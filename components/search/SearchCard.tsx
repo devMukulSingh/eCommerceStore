@@ -1,15 +1,15 @@
-import { Iproducts } from '@/types'
+import { Iproducts } from '@/lib/types'
 import Image from 'next/image'
 import Link from 'next/link';
 import DetailsSection from './DetailsSection';
 
 interface SearchCardProps {
     product: Iproducts,
-    storeId:string
+    storeId: string
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({
-    product,storeId
+    product, storeId
 }) => {
     return (
         <Link href={`/${storeId}/product/${product.id}`}>
@@ -18,9 +18,9 @@ const SearchCard: React.FC<SearchCardProps> = ({
                 <figure className='relative w-52 h-52'>
                     <Image src={product.images[0].url} alt='productImg' fill className='object-contain object-center' />
                 </figure>
-                
-                <DetailsSection product={product}/>
-                
+
+                <DetailsSection product={product} />
+
             </main>
         </Link>
     )

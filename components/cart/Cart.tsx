@@ -1,4 +1,4 @@
-import { Iproducts } from '@/types'
+import { Iproducts } from '@/lib/types'
 import CartItem from "@/components/cart/CartItem";
 import EmptyCart from './EmptyCart';
 
@@ -17,7 +17,7 @@ const Cart: React.FC<CartProps> = ({
       {
         cartProducts && cartProducts.length > 0 ?
           cartProducts && cartProducts.map((cartItem) => (
-            <CartItem cartItem={cartItem} />
+            <CartItem cartItem={cartItem} key={cartItem.id}/>
           ))
           :
           <EmptyCart />

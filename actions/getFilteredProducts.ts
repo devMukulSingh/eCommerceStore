@@ -1,5 +1,5 @@
 import { getApiBaseUrl } from '@/constants/base_url_server'
-import { Iproducts } from '@/types'
+import { Iproducts } from '@/lib/types'
 import axios from 'axios'
 
 interface IgetFilteredArgs {
@@ -12,11 +12,10 @@ export const getFilteredProducts = async ({
   brandId
 }: IgetFilteredArgs) => {
   try {
+    const { API_BASE_URL } = await getApiBaseUrl()
 
-    const {API_BASE_URL} = await getApiBaseUrl();
+    const { data } = await axios.get(`${API_BASE_URL}/product`)
 
-    const { data } = await axios.get(`${API_BASE_URL}/product`);
-    
     const filteredProducts = data.products.filter((product: Iproducts) => {
       if (brandId && categoryId) {
         return categoryId === product.categoryId && brandId === product.brandId
@@ -33,6 +32,6 @@ export const getFilteredProducts = async ({
 
     return filteredProducts
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
 }

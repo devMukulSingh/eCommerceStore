@@ -6,14 +6,14 @@ import { useAppDispatch } from '@/redux/hooks';
 import { setCartProduct } from '@/redux';
 import axios from 'axios';
 import { API_BASE_URL_CLIENT } from '@/constants/base_url_client';
-import { Iproducts } from '@/types';
+import { Iproducts } from '@/lib/types';
 import { Loader } from 'lucide-react';
 
-interface ProductDetailsButtonsProps{
-    product:Iproducts
+interface ProductDetailsButtonsProps {
+    product: Iproducts
 }
 
-const ProductDetailsButtons:React.FC<ProductDetailsButtonsProps> = ({
+const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
     product
 }) => {
 

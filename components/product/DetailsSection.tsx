@@ -1,8 +1,8 @@
 "use client"
-import { Iproducts } from '@/types'
+import { Iproducts } from '@/lib/types'
 
 interface DetailsSectionProps {
-    product:Iproducts
+    product: Iproducts
 }
 const DetailsSection: React.FC<DetailsSectionProps> = ({
     product
@@ -12,8 +12,8 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({
             <h1 className="font-semibold text-xl">Details</h1>
             <div className="space-y-2 ml-5 basis-1/2">
                 {
-                    product?.description.map((desc) => (
-                        <ul className="list-disc">
+                    product?.description.map((desc,index) => (
+                        <ul className="list-disc" key={index}>
                             <li className="">{desc}</li>
                         </ul>
                     ))

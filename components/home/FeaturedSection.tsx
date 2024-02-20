@@ -1,6 +1,6 @@
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { Iproducts } from "@/types";
+import { Iproducts } from "@/lib/types";
 import ProductCard from "../commons/ProductCard";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -9,16 +9,16 @@ import NoResuts from "../commons/NoResuts";
 import { getBrands } from "@/actions/getBrands";
 import { getFilteredProducts } from "@/actions/getFilteredProducts";
 
-interface FeaturedSectionProps{
-    brandId:string
+interface FeaturedSectionProps {
+    brandId: string
 }
 
-const FeaturedSection:React.FC<FeaturedSectionProps> = async ({
+const FeaturedSection: React.FC<FeaturedSectionProps> = async ({
     brandId
 }) => {
 
     const brands = await getBrands();
-    
+
     const products: Iproducts[] = await getFilteredProducts({
         brandId,
     });

@@ -1,13 +1,13 @@
 "use client"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext } from '../ui/carousel'
-import { Ibillboard } from '@/types'
+import { Ibillboard } from '@/lib/types'
 import Image from 'next/image'
 
-interface HomeCarouselProps{
-  billboard:Ibillboard
+interface HomeCarouselProps {
+  billboard: Ibillboard
 }
 
-const HomeCarousel:React.FC<HomeCarouselProps> = ({
+const HomeCarousel: React.FC<HomeCarouselProps> = ({
   billboard
 }) => {
 
@@ -16,11 +16,11 @@ const HomeCarousel:React.FC<HomeCarouselProps> = ({
       <Carousel className='sm:px-10 p-0'>
         <CarouselContent>
           {
-            billboard.images && billboard.images.map((image: { url: string },index) => (
-              <CarouselItem 
-                key={index} 
+            billboard.images && billboard.images.map((image: { url: string }, index) => (
+              <CarouselItem
+                key={index}
                 className='relative w-full h-[15rem] sm:h-[calc(100vh-10rem)] rounded-xl'
-                >
+              >
                 <Image src={image.url} fill alt='carouselImg' className='object-center object-contain md:object-cover' />
               </CarouselItem>
             ))

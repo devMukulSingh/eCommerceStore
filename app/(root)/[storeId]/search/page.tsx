@@ -1,10 +1,10 @@
 import { getSearchProducts } from "@/actions/getSearchProducts";
 import SearchCard from "@/components/search/SearchCard";
-import { Iproducts } from "@/types";
+import { Iproducts } from "@/lib/types";
 
 const SearchPage = async (
-  {searchParams,params}: { searchParams: { query: string }, params: { storeId:string} }
-  
+  { searchParams, params }: { searchParams: { query: string }, params: { storeId: string } }
+
 ) => {
 
   const { query } = searchParams;
@@ -20,7 +20,7 @@ const SearchPage = async (
       }
       {
         searchedProducts && searchedProducts.map((product: Iproducts) => (
-          <SearchCard product={product} storeId={storeId}/>
+          <SearchCard product={product} storeId={storeId} />
         ))
       }
     </main>

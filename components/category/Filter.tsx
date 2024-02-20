@@ -1,12 +1,12 @@
 "use client"
 import qs from "query-string";
-import { Ibrand } from "@/types"
+import { Ibrand } from "@/lib/types"
 import { useRouter, useSearchParams } from "next/navigation"
 
 export interface FilterProps {
     filter: Ibrand[] | null,
     heading: string,
-    valueKey: string ,
+    valueKey: string,
 }
 
 const Filter: React.FC<FilterProps> = ({
@@ -18,22 +18,22 @@ const Filter: React.FC<FilterProps> = ({
     const router = useRouter();
     const searchParams = useSearchParams();
     const currentParams = searchParams.get(valueKey);
-    
-    
+
+
     const handleFilter = (id: string) => {
         let query = {
-            [valueKey] : id
+            [valueKey]: id
         }
-        if( id === currentParams){
+        if (id === currentParams) {
             //@ts-ignore
             query[valueKey] = null;
         }
-                    
+
         const url = qs.stringifyUrl({
             url: window.location.href,
             query
-            }, { skipNull:true});
-        router.push(url,{ scroll:false});
+        }, { skipNull: true });
+        router.push(url, { scroll: false });
     }
     return (
         <main className="flex flex-col gap-3 py-5 pl-5 pr-15 xl:pr-20 border h-fit mt-10">

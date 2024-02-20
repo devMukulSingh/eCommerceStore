@@ -1,5 +1,5 @@
 "use client"
-import { Iproducts } from '@/types'
+import { Iproducts } from '@/lib/types'
 import { Button } from '../ui/button'
 import axios from 'axios'
 import { API_BASE_URL_CLIENT } from '@/constants/base_url_client'
@@ -72,7 +72,7 @@ const CartTotal: React.FC<CartTotalProps> = ({
                     <div className='space-y-2'>
                         {
                             cartProducts && cartProducts.map((item) => (
-                                <ul>
+                                <ul key={item.id}>
                                     <li>₹{item.price}</li>
                                 </ul>
                             ))

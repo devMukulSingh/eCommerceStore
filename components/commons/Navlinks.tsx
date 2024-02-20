@@ -1,6 +1,6 @@
 "use client"
 import { getCategories } from '@/actions/getCategories';
-import { Icategory } from '@/types';
+import { Icategory } from '@/lib/types';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -9,13 +9,13 @@ const Navlinks = () => {
 
   const [categories, setCategories] = useState([]);
 
-  useEffect( () => {
-    const getData = async() => {
+  useEffect(() => {
+    const getData = async () => {
       const res = await getCategories();
       setCategories(res);
     }
     getData();
-  },[]);
+  }, []);
 
   const { storeId } = useParams();
   return (

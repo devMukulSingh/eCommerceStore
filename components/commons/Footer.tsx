@@ -1,15 +1,15 @@
 import { getCategories } from "@/actions/getCategories";
 import { getStoreId } from "@/actions/getStoreId";
-import { Icategory } from "@/types";
+import { Icategory } from "@/lib/types";
 import Link from "next/link"
 
 
-const Footer = async() => {
+const Footer = async () => {
 
-  const {storeId} = await getStoreId();
+  const { storeId } = await getStoreId();
 
-  const categories:Icategory[] = await getCategories();
-  
+  const categories: Icategory[] = await getCategories();
+
   const socialLinks = [
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",

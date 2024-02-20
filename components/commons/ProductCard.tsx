@@ -1,5 +1,5 @@
 "use client"
-import { Iproducts } from "@/types"
+import { Iproducts } from "@/lib/types"
 import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductsPageProps> = ({
           <div className="flex flex-col gap-1 mt-auto">
             <h1 className="text-lg font-medium line-clamp-2">{product.name}</h1>
             <h1 className="text-neutral-400 ">₹{product.price}</h1>
-            <Ratings value={product.ratings}/>
+            <Ratings value={product.ratings} />
           </div>
         </section>
       </Link>

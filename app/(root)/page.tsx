@@ -1,12 +1,12 @@
 import { getStores } from "@/actions/getStores";
 import Stores from "@/components/root/Stores";
-import { Istore } from "@/types";
+import { Istore } from "@/lib/types";
 
 
 export default async function RootPage() {
 
-    const stores:Istore[] = await getStores();
-    
+    const stores: Istore[] = await getStores();
+
     return (
         <>
             <main className="flex justify-center items-center w-screen h-screen">
@@ -16,7 +16,7 @@ export default async function RootPage() {
 
                         {
                             stores && stores.map((store) => (
-                                <Stores store={store}/>
+                                <Stores store={store} />
                             ))
                         }
                     </div>
