@@ -19,7 +19,7 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({
             billboard.images && billboard.images.map((image: { url: string }, index) => (
               <CarouselItem
                 key={index}
-                className='relative w-full h-[15rem] sm:h-[calc(100vh-10rem)] rounded-xl'
+                className='relative sm:w-full w-[20rem] h-[18rem] sm:h-[calc(100vh-10rem)] rounded-xl'
               >
                 <Image src={image.url} fill alt='carouselImg' className='object-center object-contain md:object-cover' />
               </CarouselItem>

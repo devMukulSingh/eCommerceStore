@@ -10,7 +10,7 @@ const HomePage = async({
   const billboard = await getBillboard("17130cf5-0a55-4091-a16e-fc304b2e8790");
  const {brandId} = searchParams;
   return (
-      <main className='py-4 space-y-10 lg:px-0 md:px-0 sm:px-0 px-10'>
+      <main className='py-4 space-y-10 lg:px-0 md:px-0 sm:px-0 px-5'>
           {
               billboard &&
               <>

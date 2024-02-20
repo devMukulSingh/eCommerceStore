@@ -32,7 +32,10 @@ const ProductCard: React.FC<ProductsPageProps> = ({
       <Link href={`/${storeId}/product/${product.id}`}>
         <section
           className="
-          h-[28rem]
+          sm:h-[28rem]
+          h-[25rem]
+          md:w-auto
+          w-[18rem]
           flex
           flex-col
           items-center
@@ -48,7 +51,7 @@ const ProductCard: React.FC<ProductsPageProps> = ({
           hover:scale-110 
           hover:shadow-slate-700
           cursor-pointer">
-          <figure className="relative w-full h-60 overflow-hidden">
+          <figure className="relative w-full sm:h-60 h-52 overflow-hidden">
             <Image
               className="object-contain overflow-hidden"
               src={product.images[0].url}

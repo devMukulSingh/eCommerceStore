@@ -1,9 +1,6 @@
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Iproducts } from "@/lib/types";
 import ProductCard from "../commons/ProductCard";
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import Filter from "../category/Filter";
 import NoResuts from "../commons/NoResuts";
 import { getBrands } from "@/actions/getBrands";
@@ -24,10 +21,10 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = async ({
     });
 
     return (
-        <main className="flex gap-10 md:px-8 sm:px-5">
+        <main className="flex gap-10 md:px-8 sm:px-2 ">
             <Filter filter={brands} heading="Brands" valueKey="brandId" />
-            <div className="">
-                <h1 className="text-3xl font-bold underline text-center lg:text-left md:text-left ">
+            <div className="flex flex-col justify-center w-full">
+                <h1 className="sm:text-3xl text-2xl text-nowrap font-bold underline text-center lg:text-left md:text-left ">
                     Featured Collection
                 </h1>
                 {products?.length == 0 && <NoResuts />}

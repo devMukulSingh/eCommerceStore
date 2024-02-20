@@ -36,7 +36,7 @@ const Filter: React.FC<FilterProps> = ({
         router.push(url, { scroll: false });
     }
     return (
-        <main className="flex flex-col gap-3 py-5 pl-5 pr-15 xl:pr-20 border h-fit mt-10">
+        <main className="hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 xl:pr-20 border h-fit mt-10">
             <h1 className="text-2xl font-semibold">{heading}</h1>
             <section className="flex flex-col gap-2">
                 {
