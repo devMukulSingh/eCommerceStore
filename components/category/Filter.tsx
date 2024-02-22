@@ -43,7 +43,7 @@ const Filter: React.FC<FilterProps> = ({
 
         router.push(url, { scroll: false });
 
-        if(window.screen.width < 860 ){
+        if (window.screen.width < 860) {
             dispatch(setOpenFilters());
         }
     }
@@ -51,7 +51,7 @@ const Filter: React.FC<FilterProps> = ({
         <main className={cn("hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10", className)}>
             <h1 className="text-2xl font-semibold">{heading}</h1>
             <X className="sm:hidden flex ml-auto absolute top-[20px] right-5" onClick={() => dispatch(setOpenFilters())} />
-            <section className="flex flex-col gap-2">
+            <section className="flex flex-col gap-2 sm:mt-0 mt-5">
                 {
                     filter && filter.map((f) => (
                         <ul key={f.id}>

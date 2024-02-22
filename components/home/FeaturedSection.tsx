@@ -21,24 +21,30 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = async ({
     });
 
     return (
-        <main className="flex gap-10 md:px-8 sm:px-2 ">
-            <Filter filter={brands} heading="Brands" valueKey="brandId" />
-            <div className="flex flex-col justify-center w-full">
-                <h1 className="sm:text-3xl text-2xl text-nowrap font-bold underline text-center lg:text-left md:text-left ">
-                    Featured Collection
-                </h1>
-                {products?.length == 0 && <NoResuts />}
-                <div className="grid lg:grid-cols-3 gap-5 md:grid-cols-2 grid-cols-1 xl:grid-cols-4 sm:mx-auto sm:w-full ">
+        <>
+            {
+                brands &&
+                <main className="flex gap-10 md:px-8 sm:px-2 ">
 
-                    {
-                        products && products.map((product) => {
-                            if (product.isFeatured) return <ProductCard product={product} key={product.id} />
-                        })
+                    <Filter filter={brands} heading="Brands" valueKey="brandId" />
+                    <div className="flex flex-col justify-center w-full">
+                        <h1 className="sm:text-3xl text-2xl text-nowrap font-bold underline text-center lg:text-left md:text-left ">
+                            Featured Collection
+                        </h1>
+                        {products?.length == 0 && <NoResuts />}
+                        <div className="grid lg:grid-cols-3 gap-5 md:grid-cols-2 grid-cols-1 xl:grid-cols-4 sm:mx-auto sm:w-full ">
 
-                    }
-                </div>
-            </div>
-        </main>
+                            {
+                                products && products.map((product) => {
+                                    if (product.isFeatured) return <ProductCard product={product} key={product.id} />
+                                })
+
+                            }
+                        </div>
+                    </div>
+                </main>
+            }
+        </>
     )
 }
 
