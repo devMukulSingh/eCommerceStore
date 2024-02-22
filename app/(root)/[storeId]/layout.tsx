@@ -13,8 +13,13 @@ export default async function RootLayout({ children} : {children : React.ReactNo
             <Navbar/>
             <Sidebar/> 
             <MobileFilters brands={brands}/>
+            <div className="min-h-[calc(100vh-5rem)]">
             {children}
-            <Footer/>
+            </div>
+            {
+               children && <Footer/>
+
+            }
         </main>
     )
 }
