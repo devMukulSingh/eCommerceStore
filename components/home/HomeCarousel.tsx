@@ -16,7 +16,7 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({
       <Carousel className='sm:px-10 p-0'>
         <CarouselContent>
           {
-            billboard.images && billboard.images.map((image: { url: string }, index) => (
+            billboard?.images && billboard.images.map((image: { url: string }, index) => (
               <CarouselItem
                 key={index}
                 className='relative sm:w-full w-[20rem] h-[18rem] sm:h-[calc(100vh-10rem)] rounded-xl'

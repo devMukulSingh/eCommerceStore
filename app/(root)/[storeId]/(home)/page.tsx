@@ -13,7 +13,7 @@ const HomePage = async ({
 
     const { brandId } = searchParams;
 
-    const billboard = await getBillboard("17130cf5-0a55-4091-a16e-fc304b2e8790");
+    const billboard = await getBillboard("25628a9a-b840-4ba0-8690-2e3bde751d2a");
     
     const brands:Ibrand[] = await getBrands();
 

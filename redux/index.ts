@@ -2,8 +2,7 @@ import { IinitialState } from '@/lib/types'
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import toast from 'react-hot-toast'
 
-const userEmail =
-  typeof window !== 'undefined' && localStorage.getItem('userEmail')
+const userEmail = localStorage.getItem('userEmail')
 
 const initialState: IinitialState = {
   openSidebar: false,
@@ -19,17 +18,19 @@ const ecommSlice = createSlice({
   reducers: {
     setCartProduct: (state, action) => {
       if (
-        state.cartProducts &&
         userEmail &&
         !state.cartProducts.find(item => item.id === action.payload.id)
       ) {
+      console.log(action.payload,'in');
         state.cartProducts.push(action.payload)
         const products = JSON.stringify(state.cartProducts)
         localStorage.setItem(userEmail, products)
         toast.success('Item added to Cart')
       } else if (
+        
         state.cartProducts.find(item => item.id === action.payload.id)
       ) {
+      console.log(action.payload,'else');
         toast.error('Item already in cart')
       }
     },
