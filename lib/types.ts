@@ -2,7 +2,8 @@ export interface IinitialState{
     openSidebar : boolean,
     cartProducts : Iproducts[],
     loading:boolean,
-    openFilters:boolean
+    openFilters:boolean,
+    categories:Icategory[]
 }
 export interface Istore{
     name:string,

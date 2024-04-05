@@ -1,8 +1,8 @@
 import { getBrands } from "@/actions/getBrands";
-import Filter from "@/components/category/Filter";
+import Filter from "@/app/(root)/[storeId]/category/[categoryId]/components/Filter";
 import { Ibrand } from "@/lib/types";
 
-const FilterSection = async() => {
+const FilterSection = async () => {
   const brands: Ibrand[] = await getBrands();
   return (
     <div>
