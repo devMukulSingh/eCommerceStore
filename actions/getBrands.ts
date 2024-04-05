@@ -8,8 +8,7 @@ export const getBrands = async() => {
     console.log(API_BASE_URL);
     
     const { data } = await axios.get(`${API_BASE_URL}/brand`)
-    console.log(data
-        );
+
     
     return data.brands
 
