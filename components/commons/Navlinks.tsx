@@ -21,7 +21,7 @@ const Navlinks = () => {
   const { storeId, categoryId } = useParams();
 
   return (
-    <main className="gap-5 lg:flex md:flex xl:flex hidden ">
+    <div className="gap-5 lg:flex md:flex xl:flex hidden ">
       {categories &&
         categories?.map((category: Icategory) => (
           <Link
@@ -40,7 +40,7 @@ const Navlinks = () => {
             {category.name}
           </Link>
         ))}
-    </main>
+    </div>
   );
 };
 

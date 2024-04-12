@@ -15,7 +15,7 @@ export const getFilteredProducts = async ({
     const { API_BASE_URL } = await getApiBaseUrl();
 
     const res = await fetch(`${API_BASE_URL}/product`);
-    const products = await res.json()
+    const products = await res.json();
 
     const filteredProducts = products.filter((product: Iproducts) => {
       if (brandId && categoryId) {

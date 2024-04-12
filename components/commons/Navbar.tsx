@@ -6,10 +6,14 @@ import { Menu, ShoppingBag } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
-import Navlinks from "./Navlinks";
 import { setOpenSidebar } from "@/redux";
 import SearchBar from "./SearchBar";
 import { UserButton } from "@clerk/nextjs";
+import dynamic from "next/dynamic";
+import NavlinksSkeleton from "./NavlinksSkeleton";
+const Navlinks = dynamic( () => import("./Navlinks"),{
+  loading : () => <NavlinksSkeleton/>
+})
 
 const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -31,7 +35,6 @@ const Navbar = () => {
       </Link>
 
       <Navlinks />
-
       <SearchBar />
 
       <section className="flex items-center gap-2 sm:gap-5">

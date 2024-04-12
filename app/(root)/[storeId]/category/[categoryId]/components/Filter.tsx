@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { FolderClosed, SidebarClose, X } from "lucide-react";
 import { setOpenFilters } from "@/redux";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 export interface FilterProps {
   filter: Ibrand[] | null;
@@ -48,10 +48,11 @@ const Filter: React.FC<FilterProps> = ({
       dispatch(setOpenFilters());
     }
   };
+    const openFilters = useAppSelector((state) => state.ecomm.openFilters);
   return (
     <main
       className={cn(
-        "hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10",
+        `${!openFilters ? 'hidden' : ''} hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
         className,
       )}
     >

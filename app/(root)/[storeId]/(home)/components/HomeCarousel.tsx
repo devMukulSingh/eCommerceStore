@@ -1,4 +1,3 @@
-
 import {
   Carousel,
   CarouselContent,
@@ -8,19 +7,16 @@ import {
 import Image from "next/image";
 import { getBillboard } from "@/actions/getBillboard";
 
-interface HomeCarouselProps {
-}
+interface HomeCarouselProps {}
 
-const HomeCarousel: React.FC<HomeCarouselProps> = async() => {
-    const billboard = await getBillboard(
-      "25628a9a-b840-4ba0-8690-2e3bde751d2a"
-    );
+const HomeCarousel: React.FC<HomeCarouselProps> = async () => {
+  const billboard = await getBillboard("25628a9a-b840-4ba0-8690-2e3bde751d2a");
   return (
     <main className="relative">
       <Carousel className="sm:px-10 p-0">
         <CarouselContent>
           {billboard?.images &&
-            billboard.images.map((image: { url: string }, index:number) => (
+            billboard.images.map((image: { url: string }, index: number) => (
               <CarouselItem
                 key={index}
                 className="relative sm:w-full w-[20rem] h-[18rem] sm:h-[calc(100vh-10rem)] rounded-xl"
