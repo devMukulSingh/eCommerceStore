@@ -2,7 +2,7 @@ import { IinitialState } from '@/lib/types'
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import toast from 'react-hot-toast'
 
-const userEmail = localStorage.getItem('userEmail')
+const userEmail = typeof window !== "undefined" ? localStorage.getItem('userEmail') : ""
 
 const initialState: IinitialState = {
   openSidebar: false,

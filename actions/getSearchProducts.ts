@@ -8,7 +8,7 @@ export const getSearchProducts = async (query: string) => {
 
     const { data } = await axios.get(`${API_BASE_URL}/product`)
 
-    const searchProducts = data.products.filter((product: Iproducts) => {
+    const searchProducts = data.filter((product: Iproducts) => {
       //converting both query and productName to lowercase, so that includes method can work
       const lowerCasedName = product.name.toLowerCase()
       if (lowerCasedName.includes(query.toLowerCase())) {

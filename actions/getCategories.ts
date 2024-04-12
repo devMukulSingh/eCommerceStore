@@ -9,7 +9,7 @@ export const getCategories = async () => {
       
       const { data } = await axios.get(`${API_BASE_URL}/category`)
 
-      return data.categories
+      return data
 
     } catch (error) {
       console.log(`Error in getCategories ${error}`)

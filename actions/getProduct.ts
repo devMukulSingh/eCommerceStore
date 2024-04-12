@@ -7,6 +7,6 @@ export const getProduct = async (productId: string) => {
 
     const { data } = await axios.get(`${API_BASE_URL}/product/${productId}`);
 
-    return data.product
+    return data
   }
 

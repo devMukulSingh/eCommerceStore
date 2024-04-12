@@ -10,6 +10,6 @@ export const getBrands = async() => {
     const { data } = await axios.get(`${API_BASE_URL}/brand`)
 
     
-    return data.brands
+    return data
 
 }
