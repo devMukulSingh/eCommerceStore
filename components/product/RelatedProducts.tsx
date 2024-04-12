@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 import ProductsSkeleton from "../commons/ProductsSkeleton";
 
-const Products = dynamic( () => import("./Products"),{
-  loading: () => <ProductsSkeleton/>
-})
+const Products = dynamic(() => import("./Products"), {
+  loading: () => <ProductsSkeleton />,
+});
 
 export interface RealtedProductsProps {
   productId: string;

@@ -5,7 +5,7 @@ import { getProduct } from "@/actions/getProduct";
 import { FC } from "react";
 import { RealtedProductsProps } from "./RelatedProducts";
 
-const Products:FC<RealtedProductsProps> = async ({ productId }) => {
+const Products: FC<RealtedProductsProps> = async ({ productId }) => {
   const product = await getProduct(productId);
   const products = await getFilteredProducts({
     categoryId: product.categoryId,
@@ -13,7 +13,7 @@ const Products:FC<RealtedProductsProps> = async ({ productId }) => {
 
   const relatedProducts: Iproducts[] = products.filter(
     (product: Iproducts) =>
-      product.categoryId === product.categoryId && product.id !== productId
+      product.categoryId === product.categoryId && product.id !== productId,
   );
   return (
     <>

@@ -5,10 +5,10 @@ import Ratings from "@/components/commons/Ratings";
 import DetailsSection from "./DetailsSection";
 
 export interface ProductDetailsProps {
-  productId:string
+  productId: string;
 }
 
-const ProductDetails: React.FC<ProductDetailsProps> = async({ productId }) => {
+const ProductDetails: React.FC<ProductDetailsProps> = async ({ productId }) => {
   const product = await getProduct(productId);
   return (
     <div className="flex gap-5 lg:flex-row flex-col ">

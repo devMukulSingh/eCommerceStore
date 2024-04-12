@@ -8,16 +8,15 @@ const ProductDetailsSkeleton = () => {
       <Skeleton className="sm:w-[30rem] sm:h-[35rem] w-[18rem] h-[20rem]" />
       <section className="flex w-full lg:w-[calc(100vw-35rem)] h-full">
         <div className="flex flex-col space-y-5 w-full md:max-w-[50rem] h-fit">
-
           <div className="space-y-5">
             <div className="space-y-3">
-            <Skeleton className="w-auto h-[30px] rounded-full" />
-            <Skeleton className="w-4/5 h-[30px] rounded-full" />
+              <Skeleton className="w-auto h-[30px] rounded-full" />
+              <Skeleton className="w-4/5 h-[30px] rounded-full" />
             </div>
 
             <div className="space-y-3">
-            <Skeleton className="w-40 h-[25px] rounded-full mt-5" />
-            <Skeleton className="w-60 h-[25px] rounded-full" />
+              <Skeleton className="w-40 h-[25px] rounded-full mt-5" />
+              <Skeleton className="w-60 h-[25px] rounded-full" />
             </div>
           </div>
 

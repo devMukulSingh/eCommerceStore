@@ -29,8 +29,8 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
   };
   return (
     <Link
-      className="hover:underline text-white transition hover:scale-110"
-      prefetch={true}
+      className="hover:underline transition hover:scale-110"
+      prefetch={false}
       onClick={() => handleStore(store.id)}
       href={`/${store.id}`}
     >
