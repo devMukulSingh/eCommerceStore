@@ -15,7 +15,10 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
 
   const handleStore = async (storeId: string) => {
     //setting storeId in cookies
-    await axios.post(`/api/storeId/${storeId}`);
+    await fetch(`/api/storeId/${storeId}`,{
+      method:"POST",
+      
+    });
 
     //setting storeId in localstorage
     if (typeof window !== "undefined") {

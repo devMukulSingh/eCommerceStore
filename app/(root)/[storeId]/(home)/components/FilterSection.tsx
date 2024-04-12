@@ -5,9 +5,9 @@ import { Ibrand } from "@/lib/types";
 const FilterSection = async () => {
   const brands: Ibrand[] = await getBrands();
   return (
-    <div>
+    <>
       <Filter filter={brands} heading="Brands" valueKey="brandId" />
-    </div>
+    </>
   );
 };
 

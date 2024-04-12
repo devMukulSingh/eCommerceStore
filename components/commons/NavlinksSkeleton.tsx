@@ -1,5 +1,5 @@
-import React from 'react'
-import { Skeleton } from '../ui/skeleton'
+import React from "react";
+import { Skeleton } from "../ui/skeleton";
 
 const NavlinksSkeleton = () => {
   return (
@@ -9,6 +9,6 @@ const NavlinksSkeleton = () => {
       <Skeleton className="w-32 h-[20px] rounded-3xl" />
     </div>
   );
-}
+};
 
-export default NavlinksSkeleton
+export default NavlinksSkeleton;

@@ -11,9 +11,9 @@ import SearchBar from "./SearchBar";
 import { UserButton } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
 import NavlinksSkeleton from "./NavlinksSkeleton";
-const Navlinks = dynamic( () => import("./Navlinks"),{
-  loading : () => <NavlinksSkeleton/>
-})
+const Navlinks = dynamic(() => import("./Navlinks"), {
+  loading: () => <NavlinksSkeleton />,
+});
 
 const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
