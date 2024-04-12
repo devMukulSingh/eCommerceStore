@@ -10,7 +10,7 @@ const ProductsSection = dynamic(
     ),
   {
     loading: () => <ProductsSkeleton />,
-  }
+  },
 );
 const FilterSection = dynamic(() => import("./components/FilterSection"), {
   loading: () => <FiltersSkeleton />,

@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import ProductSkeleton from "@/components/commons/ProductsSkeleton";
 import ProductCard from "@/components/commons/ProductCard";
 
-
 interface ProductsSectionProps {
   categoryId: string;
   brandId: string;

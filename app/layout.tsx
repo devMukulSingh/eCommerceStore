@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/redux/providers";
-import { Toaster } from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/providers/theme-providers";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <body className={inter.className}>
         <ClerkProvider>
           <ThemeProvider
@@ -27,10 +27,8 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-            >
-            <Providers>
-              {children}
-            </Providers>
+          >
+            <Providers>{children}</Providers>
             <Toaster />
           </ThemeProvider>
         </ClerkProvider>

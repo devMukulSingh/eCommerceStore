@@ -1,37 +1,37 @@
-import { getApiBaseUrl } from '@/constants/base_url_server'
-import { Iproducts } from '@/lib/types'
-import axios from 'axios'
+import { getApiBaseUrl } from "@/constants/base_url_server";
+import { Iproducts } from "@/lib/types";
+import axios from "axios";
 
 interface IgetFilteredArgs {
-  categoryId?: string | null
-  brandId?: string | null
+  categoryId?: string | null;
+  brandId?: string | null;
 }
 
 export const getFilteredProducts = async ({
   categoryId,
-  brandId
+  brandId,
 }: IgetFilteredArgs) => {
   try {
-    const { API_BASE_URL } = await getApiBaseUrl()
+    const { API_BASE_URL } = await getApiBaseUrl();
 
-    const { data } = await axios.get(`${API_BASE_URL}/product`)
+    const { data } = await axios.get(`${API_BASE_URL}/product`);
 
     const filteredProducts = data.filter((product: Iproducts) => {
       if (brandId && categoryId) {
-        return categoryId === product.categoryId && brandId === product.brandId
+        return categoryId === product.categoryId && brandId === product.brandId;
       }
       if (brandId) {
-        return brandId === product.brandId
+        return brandId === product.brandId;
       }
       if (categoryId) {
-        return categoryId === product.categoryId
+        return categoryId === product.categoryId;
       } else {
-        return product.isFeatured === true
+        return product.isFeatured === true;
       }
-    })
+    });
 
-    return filteredProducts
+    return filteredProducts;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-}
+};

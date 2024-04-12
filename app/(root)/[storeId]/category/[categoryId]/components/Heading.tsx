@@ -6,7 +6,7 @@ import React from "react";
 const Heading = () => {
   const { categoryId } = useParams();
   const currCategory = useAppSelector((state) => state.ecomm.categories).find(
-    (item) => item.id === categoryId
+    (item) => item.id === categoryId,
   );
   console.log(currCategory);
 

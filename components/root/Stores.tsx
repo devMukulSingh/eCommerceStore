@@ -1,45 +1,42 @@
-"use client"
-import { Istore } from "@/lib/types"
+"use client";
+import { Istore } from "@/lib/types";
 import { useAuth, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import Link from "next/link";
 
 interface StoreProps {
-    store: Istore
+  store: Istore;
 }
 
-const Stores: React.FC<StoreProps> = ({
-    store
-}) => {
+const Stores: React.FC<StoreProps> = ({ store }) => {
+  const { userId } = useAuth();
 
-    const { userId } = useAuth();
+  const { user } = useUser();
 
-    const { user } = useUser();
+  const handleStore = async (storeId: string) => {
+    //setting storeId in cookies
+    await axios.post(`/api/storeId/${storeId}`);
 
-    const handleStore = async (storeId: string) => {
-        //setting storeId in cookies
-        await axios.post(`/api/storeId/${storeId}`);
-
-        //setting storeId in localstorage
-        if (typeof window !== "undefined") {
-            localStorage.setItem('storeId', storeId);
-            if (user?.primaryEmailAddress && userId) {
-                const email = user.primaryEmailAddress || '';
-                localStorage.setItem('userEmail', email.toString());
-                localStorage.setItem('userId', userId);
-            }
-        }
+    //setting storeId in localstorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("storeId", storeId);
+      if (user?.primaryEmailAddress && userId) {
+        const email = user.primaryEmailAddress || "";
+        localStorage.setItem("userEmail", email.toString());
+        localStorage.setItem("userId", userId);
+      }
     }
-    return (
-        <Link
-            className="hover:underline text-white transition hover:scale-110"
-            prefetch={true}
-            onClick={() => handleStore(store.id)}
-            href={`/${store.id}`}
-        >
-            {store.name}
-        </Link>
-    )
-}
+  };
+  return (
+    <Link
+      className="hover:underline text-white transition hover:scale-110"
+      prefetch={true}
+      onClick={() => handleStore(store.id)}
+      href={`/${store.id}`}
+    >
+      {store.name}
+    </Link>
+  );
+};
 
-export default Stores
+export default Stores;

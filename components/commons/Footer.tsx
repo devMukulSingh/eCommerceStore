@@ -1,11 +1,9 @@
 import { getCategories } from "@/actions/getCategories";
 import { getStoreId } from "@/actions/getStoreId";
 import { Icategory } from "@/lib/types";
-import Link from "next/link"
-
+import Link from "next/link";
 
 const Footer = async () => {
-
   const { storeId } = await getStoreId();
 
   const categories: Icategory[] = await getCategories();
@@ -13,33 +11,33 @@ const Footer = async () => {
   const socialLinks = [
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",
-      title: 'LinkedIn'
+      title: "LinkedIn",
     },
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",
-      title: 'Instagram'
+      title: "Instagram",
     },
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",
-      title: 'Facebook'
+      title: "Facebook",
     },
     {
       href: "https://linkedin.com/in/mukul-singh-bisht-36a80428b",
-      title: 'Twitter'
-    }
+      title: "Twitter",
+    },
   ];
   const aboutLinks = [
     {
       href: `/${storeId}`,
-      title: 'About Us'
+      title: "About Us",
     },
     {
       href: `/${storeId}`,
-      title: 'Contact Us'
+      title: "Contact Us",
     },
     {
       href: `/${storeId}`,
-      title: 'Careers'
+      title: "Careers",
     },
   ];
 
@@ -49,46 +47,39 @@ const Footer = async () => {
         <section className="flex flex-col gap-4 min-w-[10rem]">
           <h1 className="text-xl font-semibold">Get to Know Us</h1>
           <ul className="space-y-2">
-            {
-              aboutLinks.map((link) => (
-                <li key={link.title}>
-                  <Link href={link.href}>
-                    {link.title}
-                  </Link>
-                </li>
-              ))
-            }
+            {aboutLinks.map((link) => (
+              <li key={link.title}>
+                <Link href={link.href}>{link.title}</Link>
+              </li>
+            ))}
           </ul>
         </section>
         <section className="flex flex-col gap-4 min-w-[10rem]">
           <h1 className="text-xl font-semibold">Connect with Us</h1>
           <ul className="space-y-2">
-            {
-              socialLinks.map((link) => (
-                <li key={link.title} >
-                  <a href={link.href} target="blank">
-                    {link.title}
-                  </a>
-                </li>
-              ))
-            }
+            {socialLinks.map((link) => (
+              <li key={link.title}>
+                <a href={link.href} target="blank">
+                  {link.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </section>
         <section className="flex flex-col gap-4 min-w-[10rem]">
           <h1 className="text-xl font-semibold">Quick Links</h1>
           <ul className="space-y-2">
             <li>
-              <Link href={'/'}>Home</Link>
+              <Link href={"/"}>Home</Link>
             </li>
-            {
-              categories && categories?.map((category) => (
-                <li key={category.id} >
+            {categories &&
+              categories?.map((category) => (
+                <li key={category.id}>
                   <Link href={`/${storeId}/category/${category.id}`}>
                     {category.name}
                   </Link>
                 </li>
-              ))
-            }
+              ))}
           </ul>
         </section>
       </div>
@@ -96,7 +87,7 @@ const Footer = async () => {
         © 1996-2024, mStore.com, Inc. or its affiliates
       </h1>
     </main>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

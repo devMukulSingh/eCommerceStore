@@ -1,24 +1,21 @@
-import ProductDetails from '@/components/product/ProductDetails';
-import RelatedProducts from '@/components/product/RelatedProducts';
-import { getProduct } from '@/actions/getProduct';
+import ProductDetailsSkeleton from "@/components/product/ProductDetailsSkeleton";
+import RelatedProducts from "@/components/product/RelatedProducts";
+const ProductDetails = dynamic( () => import("@/components/product/ProductDetails"),{
+  loading : () => <ProductDetailsSkeleton/>
+})
 
-const ProductPage = async (
-  { params }: { params: { productId: string } }
-) => {
+import dynamic from "next/dynamic";
 
+const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const { productId } = params;
 
-  const product = await getProduct(productId);
-
   return (
-
-    <div className='w-full flex flex-col gap-5 p-5 sm:px-10 sm:py-10 '>
-      <ProductDetails product={product} />
-      <hr className='' />
-      <RelatedProducts productId={productId} categoryId={product.categoryId} />
+    <div className="w-full flex flex-col gap-5 p-5 sm:px-10 sm:py-10 ">
+      <ProductDetails productId={productId} />
+      <hr className="" />
+      <RelatedProducts productId={productId}  />
     </div>
+  );
+};
 
-  )
-}
-
-export default ProductPage
+export default ProductPage;

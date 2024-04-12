@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 
 const Navlinks = () => {
   const dispatch = useAppDispatch();
-  const categories = useAppSelector( state => state.ecomm.categories);
+  const categories = useAppSelector((state) => state.ecomm.categories);
   useEffect(() => {
     const getData = async () => {
       const res = await getCategories();
-      dispatch(setCategories(res))
+      dispatch(setCategories(res));
     };
     getData();
   }, []);
@@ -25,6 +25,7 @@ const Navlinks = () => {
       {categories &&
         categories?.map((category: Icategory) => (
           <Link
+            prefetch={true}
             href={`/${storeId}/category/${category.id}`}
             key={category.id}
             className={`

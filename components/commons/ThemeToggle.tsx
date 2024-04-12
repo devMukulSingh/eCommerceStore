@@ -1,32 +1,30 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useTheme } from "next-themes"
+import * as React from "react";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { setOpenSidebar } from "@/redux"
+} from "@/components/ui/dropdown-menu";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setOpenSidebar } from "@/redux";
 
 export function ThemeToggle() {
-
   const { setTheme } = useTheme();
   const dispatch = useAppDispatch();
 
   const handleToggler = (theme: string) => {
-    
-    setTheme(theme);    
+    setTheme(theme);
     //checking if its a mobile device, then closing the sidebar
     if (window.screen.width < 860) {
       dispatch(setOpenSidebar());
     }
-  }
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -48,5 +46,5 @@ export function ThemeToggle() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

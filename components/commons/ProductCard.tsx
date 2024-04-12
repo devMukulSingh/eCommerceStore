@@ -25,7 +25,9 @@ const ProductCard: React.FC<ProductsPageProps> = ({ product }) => {
 
   return (
     <main className="relative lg:m-0 md:m-0 mx-auto ">
-      <Link href={`/${storeId}/product/${product.id}`}>
+      <Link
+        prefetch={true} 
+        href={`/${storeId}/product/${product.id}`}>
         <section
           className="
           h-[25rem]

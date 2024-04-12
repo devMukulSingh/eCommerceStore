@@ -5,8 +5,6 @@ import { Iproducts } from "@/lib/types";
 import NoResuts from "@/components/commons/NoResuts";
 import ProductCard from "@/components/commons/ProductCard";
 
-
-
 const ProductsSection: FC<FeaturedSectionProps> = async ({ brandId }) => {
   const products: Iproducts[] = await getFilteredProducts({
     brandId,

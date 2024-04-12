@@ -1,10 +1,11 @@
-
-export const BASE_URL = process.env.NODE_ENV==='production' ? 'https://cmsecomm.vercel.app' : 'http://localhost:3002';
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://cmsecomm.vercel.app"
+    : "http://localhost:3002";
 
 let storeId;
-if(typeof window !=="undefined"){
-    storeId = localStorage.getItem('storeId');
+if (typeof window !== "undefined") {
+  storeId = localStorage.getItem("storeId");
 }
 
 export const API_BASE_URL_CLIENT = `${BASE_URL}/api/${storeId}`;
-

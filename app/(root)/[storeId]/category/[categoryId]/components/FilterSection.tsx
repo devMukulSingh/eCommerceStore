@@ -2,8 +2,7 @@ import { getBrands } from "@/actions/getBrands";
 import FiltersSkeleton from "@/components/commons/FiltersSkeleton";
 import Filter from "./Filter";
 
-
-const FilterSection = async() => {
+const FilterSection = async () => {
   const brands = await getBrands();
 
   return (
@@ -11,6 +10,6 @@ const FilterSection = async() => {
       <Filter filter={brands} heading="Brands" valueKey="brandId" />
     </>
   );
-}
+};
 
-export default FilterSection
+export default FilterSection;
