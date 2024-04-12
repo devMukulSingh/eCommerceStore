@@ -1,29 +1,32 @@
-"use client";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-} from "../../../../../components/ui/carousel";
-import { Ibillboard } from "@/lib/types";
+} from "@/components/ui/carousel";
 import Image from "next/image";
+import { getBillboard } from "@/actions/getBillboard";
 
 interface HomeCarouselProps {
-  billboard: Ibillboard;
 }
 
-const HomeCarousel: React.FC<HomeCarouselProps> = ({ billboard }) => {
+const HomeCarousel: React.FC<HomeCarouselProps> = async() => {
+    const billboard = await getBillboard(
+      "25628a9a-b840-4ba0-8690-2e3bde751d2a"
+    );
   return (
     <main className="relative">
       <Carousel className="sm:px-10 p-0">
         <CarouselContent>
           {billboard?.images &&
-            billboard.images.map((image: { url: string }, index) => (
+            billboard.images.map((image: { url: string }, index:number) => (
               <CarouselItem
                 key={index}
                 className="relative sm:w-full w-[20rem] h-[18rem] sm:h-[calc(100vh-10rem)] rounded-xl"
               >
                 <Image
+                  loading="lazy"
                   src={image.url}
                   fill
                   alt="carouselImg"

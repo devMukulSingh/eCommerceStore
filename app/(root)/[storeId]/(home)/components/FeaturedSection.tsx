@@ -14,10 +14,10 @@ export interface FeaturedSectionProps {
 
 const FeaturedSection: React.FC<FeaturedSectionProps> = async ({ brandId }) => {
   return (
-    <main className="flex gap-10 md:px-8 sm:px-2 ">
+    <div className="flex gap-10 md:px-8 sm:px-2 ">
       <FilterSection />
       <ProductsSection brandId={brandId} />
-    </main>
+    </div>
   );
 };
 
