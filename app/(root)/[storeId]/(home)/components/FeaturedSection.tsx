@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import FiltersSkeleton from "../../../../../components/commons/FiltersSkeleton";
+import FiltersSkeleton from "@/components/commons/FiltersSkeleton";
 import ProductsSkeleton from "@/components/commons/ProductsSkeleton";
 const ProductsSection = dynamic(() => import("./ProductsSection"), {
   loading: () => <ProductsSkeleton />,

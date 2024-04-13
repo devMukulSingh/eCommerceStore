@@ -1,8 +1,8 @@
 "use client";
 import { Istore } from "@/lib/types";
 import { useAuth, useUser } from "@clerk/nextjs";
-import axios from "axios";
-import Link from "next/link";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 interface StoreProps {
   store: Istore;
@@ -12,14 +12,13 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
   const { userId } = useAuth();
 
   const { user } = useUser();
+  const router = useRouter();
 
   const handleStore = async (storeId: string) => {
     //setting storeId in cookies
-    await fetch(`/api/storeId/${storeId}`,{
-      method:"POST",
-      
+    await fetch(`/api/storeId/${storeId}`, {
+      method: "POST",
     });
-
     //setting storeId in localstorage
     if (typeof window !== "undefined") {
       localStorage.setItem("storeId", storeId);
@@ -29,16 +28,17 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
         localStorage.setItem("userId", userId);
       }
     }
+    router.push(`/${storeId}`);
   };
+
   return (
-    <Link
+    <Button
+      variant="ghost"
       className="hover:underline transition hover:scale-110"
-      prefetch={false}
       onClick={() => handleStore(store.id)}
-      href={`/${store.id}`}
     >
       {store.name}
-    </Link>
+    </Button>
   );
 };
 

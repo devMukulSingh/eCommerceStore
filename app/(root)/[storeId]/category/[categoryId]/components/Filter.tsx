@@ -53,7 +53,7 @@ const Filter: React.FC<FilterProps> = ({
     <main
       className={cn(
         `${!openFilters ? "hidden" : ""} hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
-        className
+        className,
       )}
     >
       <h1 className="text-2xl font-semibold">{heading}</h1>
@@ -66,7 +66,7 @@ const Filter: React.FC<FilterProps> = ({
           filter.map((f) => (
             <ul key={f.id}>
               <li
-                className={`${currentParams === f.id ? 'underline font-semibold' : ''} cursor-pointer hover:underline`}
+                className={`${currentParams === f.id ? "underline font-semibold" : ""} cursor-pointer hover:underline`}
                 onClick={() => handleFilter(f.id)}
               >
                 {f.name}

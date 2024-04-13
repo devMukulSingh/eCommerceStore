@@ -16,7 +16,7 @@ const ProductsSection: FC<FeaturedSectionProps> = async ({ brandId }) => {
       </h1>
       {products?.length == 0 && <NoResuts />}
       <div className="grid lg:grid-cols-3 gap-5 md:grid-cols-2 grid-cols-1 xl:grid-cols-4 sm:mx-auto sm:w-full ">
-        {products.map((product) => {
+        {products?.map((product) => {
           return <ProductCard product={product} key={product.id} />;
         })}
       </div>

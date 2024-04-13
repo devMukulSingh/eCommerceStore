@@ -1,6 +1,5 @@
 import { getApiBaseUrl } from "@/constants/base_url_server";
 import { Iproducts } from "@/lib/types";
-import axios from "axios";
 
 interface IgetFilteredArgs {
   categoryId?: string | null;
