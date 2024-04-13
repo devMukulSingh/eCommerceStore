@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { BASE_URL } from "./base_url_client";
 
+//for getting Base url at Server side or Server components
 export const getApiBaseUrl = async () => {
   const cookieStore = cookies();
 

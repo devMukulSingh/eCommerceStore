@@ -1,3 +1,5 @@
+//for getting Base url at Client side or Client components
+
 export const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://cmsecomm.vercel.app"
