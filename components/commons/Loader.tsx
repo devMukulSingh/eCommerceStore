@@ -1,11 +1,11 @@
 "use client";
-import { Loader2 } from "lucide-react";
+import {  Loader2Icon } from "lucide-react";
 
 const Loader = () => {
   return (
-    <main className="w-[100vw] flex justify-center">
-      <Loader2 className="animate-spin mt-10" size={40} />
-    </main>
+    <div className="w-[100vw] flex justify-center">
+      <Loader2Icon className="animate-spin mt-10" size={40} />
+    </div>
   );
 };
 

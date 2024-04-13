@@ -1,5 +1,5 @@
 import { getFilteredProducts } from "@/actions/getFilteredProducts";
-import ProductCard from "../commons/ProductCard";
+import ProductCard from "@/components/commons/ProductCard";
 import { Iproducts } from "@/lib/types";
 import { getProduct } from "@/actions/getProduct";
 import { FC } from "react";
@@ -13,7 +13,7 @@ const Products: FC<RealtedProductsProps> = async ({ productId }) => {
 
   const relatedProducts: Iproducts[] = products.filter(
     (product: Iproducts) =>
-      product.categoryId === product.categoryId && product.id !== productId,
+      product.categoryId === product.categoryId && product.id !== productId
   );
   return (
     <>

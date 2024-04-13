@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/constants/base_url_server";
+import { getApiBaseUrl } from "@/lib/base_url_server";
 import { Iproducts } from "@/lib/types";
 
 interface IgetFilteredArgs {

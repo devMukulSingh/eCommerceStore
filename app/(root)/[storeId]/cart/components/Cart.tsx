@@ -1,5 +1,5 @@
 import { Iproducts } from "@/lib/types";
-import CartItem from "@/components/cart/CartItem";
+import CartItem from "@/app/(root)/[storeId]/cart/components/CartItem";
 import EmptyCart from "./EmptyCart";
 
 interface CartProps {
@@ -8,7 +8,7 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = ({ cartProducts }) => {
   return (
-    <main className="flex flex-col gap-5 min-h-[calc(90vh-27rem)] w-full">
+    <div className="flex flex-col gap-5 min-h-[calc(90vh-27rem)] w-full">
       <h1 className="text-3xl font-semibold">Shopping Cart</h1>
       <hr />
       {cartProducts && cartProducts.length > 0 ? (
@@ -19,7 +19,7 @@ const Cart: React.FC<CartProps> = ({ cartProducts }) => {
       ) : (
         <EmptyCart />
       )}
-    </main>
+    </div>
   );
 };
 

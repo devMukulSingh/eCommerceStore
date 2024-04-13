@@ -1,5 +1,5 @@
 import React from "react";
-import Ratings from "../commons/Ratings";
+import Ratings from "@/components/commons/Ratings";
 import { Iproducts } from "@/lib/types";
 
 interface DetailsSectionProps {

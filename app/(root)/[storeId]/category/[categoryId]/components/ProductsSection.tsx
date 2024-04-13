@@ -1,8 +1,6 @@
 import { getFilteredProducts } from "@/actions/getFilteredProducts";
 import { Iproducts } from "@/lib/types";
 import NoResuts from "@/components/commons/NoResuts";
-import dynamic from "next/dynamic";
-import ProductSkeleton from "@/components/commons/ProductsSkeleton";
 import ProductCard from "@/components/commons/ProductCard";
 
 interface ProductsSectionProps {

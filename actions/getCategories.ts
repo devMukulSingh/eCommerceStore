@@ -1,6 +1,5 @@
-import { getApiBaseUrl } from "@/constants/base_url_server";
-import { API_BASE_URL_CLIENT } from "@/constants/base_url_client";
-import axios from "axios";
+import { getApiBaseUrl } from "@/lib/base_url_server";
+import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 
 export const getCategories = async () => {
   try {

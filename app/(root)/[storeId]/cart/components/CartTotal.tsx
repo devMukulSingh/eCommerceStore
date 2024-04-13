@@ -1,8 +1,8 @@
 "use client";
 import { Iproducts } from "@/lib/types";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { API_BASE_URL_CLIENT } from "@/constants/base_url_client";
+import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 import Script from "next/script";
@@ -73,8 +73,8 @@ const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
         src="{HOST}/merchantpgpui/checkoutjs/merchants/{MID}.js"
         crossOrigin="anonymous"
       ></Script>
-      <main className=" lg:ml-auto ">
-        <section className="p-5 w-[25rem] border flex flex-col items-center gap-5">
+      <div className=" lg:ml-auto ">
+        <section className="p-5 shadow-neutral-400 shadow-inner w-[25rem] border flex flex-col items-center gap-5">
           <h1 className="text-2xl font underline -semibold">Subtotal</h1>
           <div className="space-y-2">
             {cartProducts &&
@@ -93,7 +93,7 @@ const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
             Proceed To Checkout
           </Button>
         </section>
-      </main>
+      </div>
     </>
   );
 };

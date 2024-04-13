@@ -1,5 +1,4 @@
-import { getApiBaseUrl } from "@/constants/base_url_server";
-import axios from "axios";
+import { getApiBaseUrl } from "@/lib/base_url_server";
 
 export const getBrands = async () => {
   try {

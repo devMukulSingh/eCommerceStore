@@ -1,11 +1,11 @@
 "use client";
 import { Istore } from "@/lib/types";
 import { useAuth, useUser } from "@clerk/nextjs";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Spinner from "../commons/Spinner";
+import Spinner from "@/components/commons/Spinner";
 
 interface StoreProps {
   store: Istore;
@@ -19,19 +19,17 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
 
   const handleStore = async (storeId: string) => {
     //setting storeId in cookies
-    try{
+    try {
       setLoading(true);
       await fetch(`/api/storeId/${storeId}`, {
         method: "POST",
       });
-    }
-    catch(e){
+    } catch (e) {
       console.log(e);
       console.log(`Error in setting storeId in cookies`);
       toast.error(`Something went wrong`);
       return;
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
     //setting storeId in localstorage
@@ -45,9 +43,9 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
     }
     router.push(`/${storeId}`);
   };
-  useEffect( () => {
-    router.prefetch(`/${store.id}`)
-  },[])
+  useEffect(() => {
+    router.prefetch(`/${store.id}`);
+  }, []);
   return (
     <Button
       variant="ghost"
@@ -55,9 +53,7 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
       onClick={() => handleStore(store.id)}
     >
       {store.name}
-      {
-        loading && <Spinner/>
-      }
+      {loading && <Spinner />}
     </Button>
   );
 };

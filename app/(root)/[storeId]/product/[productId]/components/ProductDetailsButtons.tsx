@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { setCartProduct } from "@/redux";
 import axios from "axios";
-import { API_BASE_URL_CLIENT } from "@/constants/base_url_client";
+import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 import { Iproducts } from "@/lib/types";
 import { Loader } from "lucide-react";
 

@@ -1,5 +1,4 @@
-import { getApiBaseUrl } from "@/constants/base_url_server";
-import axios from "axios";
+import { getApiBaseUrl } from "@/lib/base_url_server";
 
 export const getBillboard = async (billboardId: string) => {
   const { API_BASE_URL } = await getApiBaseUrl();

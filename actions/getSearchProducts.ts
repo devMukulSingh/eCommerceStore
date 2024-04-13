@@ -1,6 +1,5 @@
-import { getApiBaseUrl } from "@/constants/base_url_server";
+import { getApiBaseUrl } from "@/lib/base_url_server";
 import { Iproducts } from "@/lib/types";
-import axios from "axios";
 
 export const getSearchProducts = async (query: string) => {
   try {

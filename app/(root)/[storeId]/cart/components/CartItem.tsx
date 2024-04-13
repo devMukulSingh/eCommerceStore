@@ -1,7 +1,7 @@
 "use client";
 import { Iproducts } from "@/lib/types";
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import { removeCartProduct } from "@/redux";
 import { useAppDispatch } from "@/redux/hooks";
@@ -16,9 +16,10 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   };
   return (
     <>
-      <main className="flex items-center">
+      <div className="flex items-center">
         <figure className="relative h-[10rem] min-w-[15rem]">
           <Image
+            loading="lazy"
             className="rounded-md object-contain object-top"
             src={cartItem.images[0].url}
             fill
@@ -39,7 +40,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
             <Trash className="" />
           </Button>
         </section>
-      </main>
+      </div>
       <hr />
     </>
   );

@@ -1,10 +1,13 @@
-import ProductDetailsSkeleton from "@/components/product/ProductDetailsSkeleton";
-import RelatedProducts from "@/components/product/RelatedProducts";
+import ProductDetailsSkeleton from "@/app/(root)/[storeId]/product/[productId]/components/ProductDetailsSkeleton";
+import RelatedProducts from "@/app/(root)/[storeId]/product/[productId]/components/RelatedProducts";
 const ProductDetails = dynamic(
-  () => import("@/components/product/ProductDetails"),
+  () =>
+    import(
+      "@/app/(root)/[storeId]/product/[productId]/components/ProductDetails"
+    ),
   {
     loading: () => <ProductDetailsSkeleton />,
-  },
+  }
 );
 
 import dynamic from "next/dynamic";

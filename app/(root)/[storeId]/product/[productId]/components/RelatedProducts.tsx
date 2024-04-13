@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import ProductsSkeleton from "../commons/ProductsSkeleton";
+import ProductsSkeleton from "@/components/commons/ProductsSkeleton";
 
 const Products = dynamic(() => import("./Products"), {
   loading: () => <ProductsSkeleton />,

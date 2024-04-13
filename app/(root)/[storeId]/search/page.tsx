@@ -1,5 +1,5 @@
 import { getSearchProducts } from "@/actions/getSearchProducts";
-import SearchCard from "@/components/search/SearchCard";
+import SearchCard from "@/app/(root)/[storeId]/search/components/SearchCard";
 import { Iproducts } from "@/lib/types";
 
 const SearchPage = async ({

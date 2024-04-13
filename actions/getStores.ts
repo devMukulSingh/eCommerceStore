@@ -1,5 +1,4 @@
-import { BASE_URL } from "@/constants/base_url_client";
-import axios from "axios";
+import { BASE_URL } from "@/lib/base_url_client";
 
 const userId = process.env.NEXT_PUBLIC_USER_ID;
 
