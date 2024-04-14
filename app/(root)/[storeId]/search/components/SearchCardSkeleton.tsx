@@ -9,14 +9,14 @@ const SearchCardSkeleton = () => {
         <Skeleton className="w-52 h-52 rounded-md" />
 
         <div className="flex flex-col gap-5 w-full">
-            <div className="space-y-3">
-          <Skeleton className="w-3/4 h-[25px] rounded-3xl" />
-          <Skeleton className="w-1/2 h-[25px] rounded-3xl" />
-            </div>
-            <div className="space-y-5">
-          <Skeleton className="w-40 h-[35px] rounded-full" />
-          <Skeleton className="w-52 h-[25px] rounded-3xl" />
-            </div>
+          <div className="space-y-3">
+            <Skeleton className="w-3/4 h-[25px] rounded-3xl" />
+            <Skeleton className="w-1/2 h-[25px] rounded-3xl" />
+          </div>
+          <div className="space-y-5">
+            <Skeleton className="w-40 h-[35px] rounded-full" />
+            <Skeleton className="w-52 h-[25px] rounded-3xl" />
+          </div>
         </div>
       </div>
     </div>

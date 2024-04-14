@@ -10,9 +10,7 @@ interface SearchCardProps {
 
 const SearchCard: React.FC<SearchCardProps> = ({ product, storeId }) => {
   return (
-    <Link
-    prefetch={true}
-     href={`/${storeId}/product/${product.id}`}>
+    <Link prefetch={true} href={`/${storeId}/product/${product.id}`}>
       <div className="flex gap-5 p-5 border ">
         <figure className="relative w-52 h-52">
           <Image
