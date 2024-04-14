@@ -43,11 +43,12 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
     }
     router.push(`/${storeId}`);
   };
-  useEffect(() => {
-    router.prefetch(`/${store.id}`);
-  }, []);
+  // useEffect(() => {
+  //   router.prefetch(`/${store.id}`);
+  // }, []);
   return (
     <Button
+      disabled={loading}
       variant="ghost"
       className="hover:underline flex gap-2 transition hover:scale-110"
       onClick={() => handleStore(store.id)}

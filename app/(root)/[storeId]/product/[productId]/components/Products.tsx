@@ -13,7 +13,7 @@ const Products: FC<RealtedProductsProps> = async ({ productId }) => {
 
   const relatedProducts: Iproducts[] = products.filter(
     (product: Iproducts) =>
-      product.categoryId === product.categoryId && product.id !== productId
+      product.categoryId === product.categoryId && product.id !== productId,
   );
   return (
     <>

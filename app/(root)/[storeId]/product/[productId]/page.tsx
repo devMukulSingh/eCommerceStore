@@ -7,7 +7,7 @@ const ProductDetails = dynamic(
     ),
   {
     loading: () => <ProductDetailsSkeleton />,
-  }
+  },
 );
 
 import dynamic from "next/dynamic";

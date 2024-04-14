@@ -6,11 +6,11 @@ const Cart = dynamic(
   () => import("@/app/(root)/[storeId]/cart/components/Cart"),
   {
     ssr: false,
-  }
+  },
 );
 const CartTotal = dynamic(
   () => import("@/app/(root)/[storeId]/cart/components/CartTotal"),
-  { ssr: false }
+  { ssr: false },
 );
 
 const CartPage = () => {

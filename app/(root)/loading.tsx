@@ -1,9 +1,7 @@
 import Loader from "@/components/commons/Loader";
 
 const loading = () => {
-  return (
-    <Loader/>
-  );
+  return <Loader />;
 };
 
 export default loading;

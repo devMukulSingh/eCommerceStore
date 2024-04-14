@@ -52,7 +52,7 @@ const Filter: React.FC<FilterProps> = ({
   return (
     <main
       className={cn(
-        `${!openFilters ? "hidden" : ""} hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
+        `${!openFilters ? "hidden" : ""} shadow-neutral-300 shadow-inner hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
         className,
       )}
     >
