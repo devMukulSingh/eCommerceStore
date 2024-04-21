@@ -3,16 +3,18 @@ import { Iproducts } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Head from "next/head";
 import Script from "next/script";
 import { useState } from "react";
 import { Loader } from "lucide-react";
+import { storeId } from "@/lib/constants"
 
 interface CartTotalProps {
   cartProducts: Iproducts[];
 }
 const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
+  
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const totalPrice = cartProducts
@@ -49,10 +51,13 @@ const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
 
     setLoading(true);
     const productIds = cartProducts.map((item) => item.id);
+
+    
     try {
       const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, {
-        data: productIds,
-      });
+        productIds,
+        storeId
+      } );
       router.push(data.url);
     } catch (e) {
       console.log(`Error in handleCheckout ${e}`);

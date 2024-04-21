@@ -8,7 +8,6 @@ const Heading = () => {
   const currCategory = useAppSelector((state) => state.ecomm.categories).find(
     (item) => item.id === categoryId,
   );
-  console.log(currCategory);
 
   return (
     <h1 className="sm:text-3xl text-2xl font-semibold">

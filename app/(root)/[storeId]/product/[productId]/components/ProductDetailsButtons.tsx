@@ -8,6 +8,7 @@ import axios from "axios";
 import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 import { Iproducts } from "@/lib/types";
 import { Loader } from "lucide-react";
+import { storeId } from "@/lib/constants";
 
 interface ProductDetailsButtonsProps {
   product: Iproducts;
@@ -27,7 +28,8 @@ const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
     setLoading(true);
     try {
       const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, {
-        data: [product.id],
+        productIds:[product.id],
+        storeId
       });
       router.push(data.url);
     } catch (e) {
