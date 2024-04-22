@@ -1,2 +1,2 @@
-
-export const storeId = typeof window !== "undefined" ? localStorage.getItem('storeId') : ""
+export const storeId =
+  typeof window !== "undefined" ? localStorage.getItem("storeId") : "";

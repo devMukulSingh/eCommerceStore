@@ -28,8 +28,8 @@ const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
     setLoading(true);
     try {
       const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, {
-        productIds:[product.id],
-        storeId
+        productIds: [product.id],
+        storeId,
       });
       router.push(data.url);
     } catch (e) {
@@ -40,7 +40,10 @@ const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
   };
   return (
     <main className="flex gap-5 mt-auto">
-      <Button variant="outline" onClick={handleBuyNow}>
+      <Button
+        disabled={loading} 
+        variant="outline" 
+        onClick={handleBuyNow}>
         <Loader className={`${loading ? "animate-spin mr-2" : "hidden"} `} />
         Buy Now
       </Button>
