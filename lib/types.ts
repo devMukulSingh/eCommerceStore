@@ -34,6 +34,7 @@ export interface Iproducts {
   images: {
     url: string;
   }[];
+  quantity:number;
   id: string;
   name: string;
   colorId: string;

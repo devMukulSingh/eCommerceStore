@@ -1,22 +1,35 @@
 "use client";
 import { Istore } from "@/lib/types";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Spinner from "@/components/commons/Spinner";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
 
 interface StoreProps {
   store: Istore;
 }
-
 const Stores: React.FC<StoreProps> = ({ store }) => {
-  const { userId } = useAuth();
+  const { user} = useUser();
   const [loading, setLoading] = useState(false);
-  const { user } = useUser();
   const router = useRouter();
+  const {setInLocalStorage} = useLocalStorage();
 
+  useEffect(() => {
+    if (user) {
+      const email = user?.primaryEmailAddress?.emailAddress || "";
+      setInLocalStorage({
+        key: "userEmail",
+        item: email,
+      });
+      setInLocalStorage({
+        key: "userId",
+        item: user.id,
+      });
+    }
+  }, [user]);
   const handleStore = async (storeId: string) => {
     //setting storeId in cookies
     try {
@@ -33,14 +46,10 @@ const Stores: React.FC<StoreProps> = ({ store }) => {
       setLoading(false);
     }
     //setting storeId in localstorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("storeId", storeId);
-      if (user?.primaryEmailAddress && userId) {
-        const email = user.primaryEmailAddress || "";
-        localStorage.setItem("userEmail", email.toString());
-        localStorage.setItem("userId", userId);
-      }
-    }
+    setInLocalStorage({
+      key: "storeId",
+      item: storeId,
+    });
     router.push(`/${storeId}`);
   };
 

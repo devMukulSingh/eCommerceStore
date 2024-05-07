@@ -8,7 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { setOpenSidebar } from "@/redux";
 import SearchBar from "./SearchBar";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
 import NavlinksSkeleton from "./NavlinksSkeleton";
 const Navlinks = dynamic(() => import("./Navlinks"), {
@@ -16,6 +16,7 @@ const Navlinks = dynamic(() => import("./Navlinks"), {
 });
 
 const Navbar = () => {
+  const { isSignedIn } = useUser();
   const [isMounted, setIsMounted] = useState(false);
   const dispatch = useAppDispatch();
   const { storeId } = useParams();
@@ -62,8 +63,13 @@ const Navbar = () => {
           <ShoppingBag className="mr-1" />
           <h1 className="text-lg">{cartProducts?.length}</h1>
         </button>
-
-        <UserButton afterSignOutUrl="/" />
+        <Link
+          className={`${isSignedIn ? "hidden" : ''}`}
+          href={'/sign-in'}
+          >
+          Sign In
+        </Link>
+        <UserButton afterSignOutUrl={`/${storeId}`}  />
       </section>
     </main>
   );

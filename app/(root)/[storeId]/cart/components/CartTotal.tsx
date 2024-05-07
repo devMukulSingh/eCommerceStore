@@ -9,11 +9,13 @@ import Script from "next/script";
 import { useState } from "react";
 import { Loader } from "lucide-react";
 import { storeId } from "@/lib/constants";
+import { useUser } from "@clerk/nextjs";
 
 interface CartTotalProps {
   cartProducts: Iproducts[];
 }
 const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
+  const { isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const totalPrice = cartProducts
@@ -21,33 +23,10 @@ const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
     .reduce((prevPrice, currPrice) => prevPrice + currPrice);
 
   const handleCheckout = async () => {
-    // const { data } = await axios.post(`${BASE_URL}/precheckout`,{cartProducts,totalPrice})
-    // let config = {
-    //     "root": "",
-    //     "flow": "DEFAULT",
-    //     "data": {
-    //     "orderId": "", /* update order id */
-    //     "token": "", /* update token value */
-    //     "tokenType": "TXN_TOKEN",
-    //     "amount": "" /* update amount */
-    //     },
-    //     "handler": {
-    //     "notifyMerchant": function(eventName,data){
-    //     console.log("notifyMerchant handler function called");
-    //     console.log("eventName => ",eventName);
-    //     console.log("data => ",data);
-    //     }
-    //     }
-    //     };
-
-    //     // initialze configuration using init method
-    //     window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-    //     // after successfully updating configuration, invoke JS Checkout
-    //     window.Paytm.CheckoutJS.invoke();
-    //     }).catch(function onError(error){
-    //     console.log("error => ",error);
-    //     });
-
+    if(!isSignedIn) {
+      router.push('/sign-in');
+      return;
+    }
     setLoading(true);
     const productIds = cartProducts.map((item) => item.id);
 

@@ -12,7 +12,6 @@ export const getFilteredProducts = async ({
 }: IgetFilteredArgs) => {
   try {
     const { API_BASE_URL } = await getApiBaseUrl();
-    console.log(API_BASE_URL);
 
     const res = await fetch(`${API_BASE_URL}/product`);
     const products = await res.json();

@@ -5,14 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import { removeCartProduct } from "@/redux";
 import { useAppDispatch } from "@/redux/hooks";
+import { useUser } from "@clerk/nextjs";
 
 interface CartItemProps {
   cartItem: Iproducts;
 }
 const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
+  const { isSignedIn } = useUser();
   const dispatch = useAppDispatch();
   const handleRemoveFromCart = () => {
-    dispatch(removeCartProduct(cartItem.id));
+    dispatch(removeCartProduct({
+      productId:cartItem.id,
+      isSignedIn,
+    }));
   };
   return (
     <>

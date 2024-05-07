@@ -5,26 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { useAppDispatch } from "@/redux/hooks";
-//@ts-ignore
-import ReactStars from "react-rating-stars-component";
 import { useParams } from "next/navigation";
 import { setCartProduct } from "@/redux";
 import Ratings from "./Ratings";
+import { useUser } from "@clerk/nextjs";
 
 interface ProductsPageProps {
   product: Iproducts;
 }
 
 const ProductCard: React.FC<ProductsPageProps> = ({ product }) => {
+  const { isSignedIn } = useUser();
   const { storeId } = useParams();
   const dispatch = useAppDispatch();
 
-  const handleAddToCart = () => {
-    dispatch(setCartProduct(product));
-  };
 
   return (
-    <main className="relative lg:m-0 md:m-0 mx-auto ">
+    <div className="relative lg:m-0 md:m-0 mx-auto ">
       <Link prefetch={true} href={`/${storeId}/product/${product.id}`}>
         <section
           className="
@@ -63,14 +60,21 @@ const ProductCard: React.FC<ProductsPageProps> = ({ product }) => {
         </section>
       </Link>
       <Button
-        onClick={handleAddToCart}
+        onClick={() =>
+          dispatch(
+            setCartProduct({
+              product,
+              isSignedIn,
+            })
+          )
+        }
         size="icon"
         variant="outline"
         className="absolute top-14 lg:right-14 md:right-10 left-2 z-10 rounded-full "
       >
         <ShoppingCart className="w-6 h-6" />
       </Button>
-    </main>
+    </div>
   );
 };
 

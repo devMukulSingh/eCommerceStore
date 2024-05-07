@@ -9,6 +9,7 @@ import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 import { Iproducts } from "@/lib/types";
 import { Loader } from "lucide-react";
 import { storeId } from "@/lib/constants";
+import { useUser } from "@clerk/nextjs";
 
 interface ProductDetailsButtonsProps {
   product: Iproducts;
@@ -17,14 +18,15 @@ interface ProductDetailsButtonsProps {
 const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
   product,
 }) => {
+  const {isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
-
-  const handleAddToCart = () => {
-    dispatch(setCartProduct(product));
-  };
   const handleBuyNow = async () => {
+    if (!isSignedIn){
+      router.push('/sign-in');
+      return;
+    }
     setLoading(true);
     try {
       const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, {
@@ -39,18 +41,25 @@ const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
     }
   };
   return (
-    <main className="flex gap-5 mt-auto">
-      <Button
-        disabled={loading} 
-        variant="outline" 
-        onClick={handleBuyNow}>
+    <div className="flex gap-5 mt-auto">
+      <Button disabled={loading} variant="outline" onClick={handleBuyNow}>
         <Loader className={`${loading ? "animate-spin mr-2" : "hidden"} `} />
         Buy Now
       </Button>
-      <Button onClick={handleAddToCart} disabled={loading}>
+      <Button
+        onClick={() =>
+          dispatch(
+            setCartProduct({
+              product,
+              isSignedIn,
+            })
+          )
+        }
+        disabled={loading}
+      >
         Add to Cart
       </Button>
-    </main>
+    </div>
   );
 };
 
