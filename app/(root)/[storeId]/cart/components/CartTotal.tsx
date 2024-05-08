@@ -8,7 +8,6 @@ import Head from "next/head";
 import Script from "next/script";
 import { useState } from "react";
 import { Loader } from "lucide-react";
-import { storeId } from "@/lib/constants";
 import { useUser } from "@clerk/nextjs";
 
 interface CartTotalProps {
@@ -23,8 +22,8 @@ const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
     .reduce((prevPrice, currPrice) => prevPrice + currPrice);
 
   const handleCheckout = async () => {
-    if(!isSignedIn) {
-      router.push('/sign-in');
+    if (!isSignedIn) {
+      router.push("/sign-in");
       return;
     }
     setLoading(true);
@@ -33,7 +32,6 @@ const CartTotal: React.FC<CartTotalProps> = ({ cartProducts }) => {
     try {
       const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, {
         productIds,
-        storeId,
       });
       router.push(data.url);
     } catch (e) {

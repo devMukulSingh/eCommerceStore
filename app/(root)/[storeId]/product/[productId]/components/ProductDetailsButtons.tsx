@@ -8,7 +8,6 @@ import axios from "axios";
 import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 import { Iproducts } from "@/lib/types";
 import { Loader } from "lucide-react";
-import { storeId } from "@/lib/constants";
 import { useUser } from "@clerk/nextjs";
 
 interface ProductDetailsButtonsProps {
@@ -18,20 +17,19 @@ interface ProductDetailsButtonsProps {
 const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
   product,
 }) => {
-  const {isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const handleBuyNow = async () => {
-    if (!isSignedIn){
-      router.push('/sign-in');
+    if (!isSignedIn) {
+      router.push("/sign-in");
       return;
     }
     setLoading(true);
     try {
       const { data } = await axios.post(`${API_BASE_URL_CLIENT}/checkout`, {
         productIds: [product.id],
-        storeId,
       });
       router.push(data.url);
     } catch (e) {
@@ -52,7 +50,7 @@ const ProductDetailsButtons: React.FC<ProductDetailsButtonsProps> = ({
             setCartProduct({
               product,
               isSignedIn,
-            })
+            }),
           )
         }
         disabled={loading}

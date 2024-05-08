@@ -19,7 +19,6 @@ const ProductCard: React.FC<ProductsPageProps> = ({ product }) => {
   const { storeId } = useParams();
   const dispatch = useAppDispatch();
 
-
   return (
     <div className="relative lg:m-0 md:m-0 mx-auto ">
       <Link prefetch={true} href={`/${storeId}/product/${product.id}`}>
@@ -65,7 +64,7 @@ const ProductCard: React.FC<ProductsPageProps> = ({ product }) => {
             setCartProduct({
               product,
               isSignedIn,
-            })
+            }),
           )
         }
         size="icon"

@@ -63,13 +63,10 @@ const Navbar = () => {
           <ShoppingBag className="mr-1" />
           <h1 className="text-lg">{cartProducts?.length}</h1>
         </button>
-        <Link
-          className={`${isSignedIn ? "hidden" : ''}`}
-          href={'/sign-in'}
-          >
+        <Link className={`${isSignedIn ? "hidden" : ""}`} href={"/sign-in"}>
           Sign In
         </Link>
-        <UserButton afterSignOutUrl={`/${storeId}`}  />
+        <UserButton afterSignOutUrl={`/${storeId}`} />
       </section>
     </main>
   );

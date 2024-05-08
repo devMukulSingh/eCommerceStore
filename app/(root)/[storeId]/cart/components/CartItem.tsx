@@ -14,10 +14,12 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   const { isSignedIn } = useUser();
   const dispatch = useAppDispatch();
   const handleRemoveFromCart = () => {
-    dispatch(removeCartProduct({
-      productId:cartItem.id,
-      isSignedIn,
-    }));
+    dispatch(
+      removeCartProduct({
+        productId: cartItem.id,
+        isSignedIn,
+      }),
+    );
   };
   return (
     <>

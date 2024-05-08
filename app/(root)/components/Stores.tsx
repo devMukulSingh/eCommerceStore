@@ -12,10 +12,10 @@ interface StoreProps {
   store: Istore;
 }
 const Stores: React.FC<StoreProps> = ({ store }) => {
-  const { user} = useUser();
+  const { user } = useUser();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const {setInLocalStorage} = useLocalStorage();
+  const { setInLocalStorage } = useLocalStorage();
 
   useEffect(() => {
     if (user) {
