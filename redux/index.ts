@@ -10,7 +10,7 @@ const userEmail =
 const initialState: IinitialState = {
   openSidebar: false,
   cartProducts:
-    (userEmail && JSON.parse(localStorage.getItem(userEmail) || "[]")) || [],
+    (userEmail ? JSON.parse(localStorage.getItem(userEmail) || "[]") : []) ,
   loading: false,
   openFilters: false,
   categories: [],
