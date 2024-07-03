@@ -11,21 +11,23 @@ import useSWR from "swr";
 import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
 import { fetcher } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { useState } from "react";
 
 const Sidebar = () => {
+  const [openSidebar, setOpenSidebar] = useState(false);
   const { storeId } = useParams();
   const { data: categories, isLoading } = useSWR(
     `${API_BASE_URL_CLIENT}/category`,
     fetcher,
     {
       revalidateOnFocus: false,
-    }
+    },
   );
   const router = useRouter();
   const cartProducts = useAppSelector((state) => state.ecomm.cartProducts);
   const dispatch = useAppDispatch();
   return (
-    <Sheet>
+    <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
       <SheetTrigger>
         <Menu
           size={20}
@@ -34,7 +36,7 @@ const Sidebar = () => {
       </SheetTrigger>
       <SheetContent side="right" className="flex flex-col gap-5 w-[15rem]">
         <Link
-          onClick={() => dispatch(setOpenSidebar())}
+          onClick={() => setOpenSidebar(false)}
           href={`/${storeId}`}
           className="text-3xl font-bold mb-2"
         >
@@ -43,7 +45,10 @@ const Sidebar = () => {
         <Button
           variant={"ghost"}
           size="icon"
-          onClick={() => router.push("/cart")}
+          onClick={() => {
+            router.push(`/${storeId}/cart`);
+            setOpenSidebar(false);
+          }}
           className=" 
           w-fit
           p-2
@@ -59,7 +64,7 @@ const Sidebar = () => {
         <ThemeToggle />
         {categories?.map((category: Icategory) => (
           <Link
-            onClick={() => dispatch(setOpenSidebar())}
+            onClick={() => setOpenSidebar(false)}
             href={`/${storeId}/category/${category.id}`}
             key={category.id}
             className="transition hover:scale-110 text-nowrap hover:underline underline-offset-8"

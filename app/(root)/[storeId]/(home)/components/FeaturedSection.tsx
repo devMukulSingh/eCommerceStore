@@ -3,11 +3,9 @@ import FiltersSkeleton from "@/components/commons/FiltersSkeleton";
 import ProductsSkeleton from "@/components/commons/ProductsSkeleton";
 import Filter from "../../category/[categoryId]/components/Filter";
 
-
 const ProductsSection = dynamic(() => import("./ProductsSection"), {
   loading: () => <ProductsSkeleton />,
 });
-
 
 export interface FeaturedSectionProps {
   brandId: string;

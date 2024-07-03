@@ -1,3 +1,4 @@
+'use client'
 import {
   Carousel,
   CarouselContent,
@@ -5,14 +6,24 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import { getBillboard } from "@/actions/getBillboard";
+import useSWR from "swr";
+import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
+import toast from "react-hot-toast";
+import { fetcher } from "@/lib/utils";
 
 interface HomeCarouselProps {}
 
 const HomeCarousel: React.FC<HomeCarouselProps> = async () => {
-  const billboard = await getBillboard("25628a9a-b840-4ba0-8690-2e3bde751d2a");
+  const { data:billboard,isLoading} = useSWR(
+    `${API_BASE_URL_CLIENT}/billboard/25628a9a-b840-4ba0-8690-2e3bde751d2a`,fetcher,{
+      onError(e){
+        toast.error(`Something went wrong ,please try again later`)
+        console.log(`Error in get Billboards`,e);
+      }
+    }
+  );
   return (
-    <main className="relative">
+    <div className="relative">
       <Carousel className="sm:px-10 p-0">
         <CarouselContent>
           {billboard?.images &&
@@ -35,7 +46,7 @@ const HomeCarousel: React.FC<HomeCarouselProps> = async () => {
           <CarouselNext />
         </div>
       </Carousel>
-    </main>
+    </div>
   );
 };
 

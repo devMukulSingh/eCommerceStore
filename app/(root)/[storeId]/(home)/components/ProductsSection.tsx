@@ -14,7 +14,7 @@ const ProductsSection: FC<FeaturedSectionProps> = async ({ brandId }) => {
     <div className="flex flex-col w-full">
       <div className="flex gap-5 md:gap-10 items-center  w-full">
         <MobileFilters />
-        <h1 
+        <h1
           className="
           sm:text-3xl 
           text-2xl 
@@ -24,7 +24,8 @@ const ProductsSection: FC<FeaturedSectionProps> = async ({ brandId }) => {
           text-center 
           lg:text-left 
           md:text-left 
-          ">
+          "
+        >
           Featured Collection
         </h1>
       </div>

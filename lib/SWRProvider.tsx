@@ -1,16 +1,13 @@
-'use client'
-import React, { ReactNode } from 'react'
-import { SWRConfig } from 'swr';
-import localStorageProvider from "./localStorageProvider"
+"use client";
+import React, { ReactNode } from "react";
+import { SWRConfig } from "swr";
+import localStorageProvider from "./localStorageProvider";
 
-const SWRProvider = ({children}:{children:ReactNode}) => {
+const SWRProvider = ({ children }: { children: ReactNode }) => {
   return (
     //@ts-ignore
-      <SWRConfig value={{ provider: localStorageProvider   }}>
-        {children}
-      </SWRConfig>
-
+    <SWRConfig value={{ provider: localStorageProvider }}>{children}</SWRConfig>
   );
-}
+};
 
-export default SWRProvider
+export default SWRProvider;

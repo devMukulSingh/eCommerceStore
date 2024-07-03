@@ -2,7 +2,6 @@
 import qs from "query-string";
 import { Ibrand } from "@/lib/types";
 import { useRouter, useSearchParams } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { SlidersHorizontal, X } from "lucide-react";
 import { setOpenFilters } from "@/redux";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -19,7 +18,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useState } from "react";
 const MobileFilters: React.FC = ({}) => {
+  const [openSidebar, setOpenSidebar] = useState(false);
   const { data: brands } = useSWR(`${API_BASE_URL_CLIENT}/brand`);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -40,7 +41,7 @@ const MobileFilters: React.FC = ({}) => {
         url: window.location.href,
         query,
       },
-      { skipNull: true }
+      { skipNull: true },
     );
 
     router.push(url, { scroll: false });
@@ -51,36 +52,35 @@ const MobileFilters: React.FC = ({}) => {
   };
   return (
     <div className="block sm:hidden">
-
-      <Sheet>
+      <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
         <SheetTrigger asChild>
           <Button variant="outline">
-            <SlidersHorizontal className="flex-shrink-0" size={15}/>
+            <SlidersHorizontal className="flex-shrink-0" size={15} />
           </Button>
         </SheetTrigger>
         <SheetContent className="w-[15rem]" side="left">
-            {brands &&
-              brands.map((brand: Ibrand) => (
-                <ul
-                  className="flex flex-col gap-4" 
-                  key={brand.id}>
-                  <li
-                    className={`${currentParams === brand.id ? "underline font-semibold" : ""} 
+          {brands &&
+            brands.map((brand: Ibrand) => (
+              <ul className="flex flex-col gap-4" key={brand.id}>
+                <li
+                  className={`${currentParams === brand.id ? "underline font-semibold" : ""} 
                     cursor-pointer 
                     hover:underline
                     text-sm
                     `}
-                    onClick={() => handleFilter(brand.id)}
-                  >
-                    {brand.name}
-                  </li>
-                  <hr className="mb-2"/>
-                </ul>
-              ))}
+                  onClick={() => {
+                    handleFilter(brand.id);
+                    setOpenSidebar(false);
+                  }}
+                >
+                  {brand.name}
+                </li>
+                <hr className="mb-2" />
+              </ul>
+            ))}
         </SheetContent>
       </Sheet>
-              </div>
-
+    </div>
   );
 };
 

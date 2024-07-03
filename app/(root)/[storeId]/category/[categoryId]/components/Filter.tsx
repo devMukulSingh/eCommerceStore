@@ -29,7 +29,7 @@ const Filter: React.FC<FilterProps> = ({ heading, valueKey, className }) => {
         console.log(`Error in get Brands`, e);
       },
       revalidateOnFocus: false,
-    }
+    },
   );
   const handleFilter = (id: string) => {
     let query = {
@@ -45,7 +45,7 @@ const Filter: React.FC<FilterProps> = ({ heading, valueKey, className }) => {
         url: window.location.href,
         query,
       },
-      { skipNull: true }
+      { skipNull: true },
     );
 
     router.push(url, { scroll: false });
@@ -59,7 +59,7 @@ const Filter: React.FC<FilterProps> = ({ heading, valueKey, className }) => {
     <main
       className={cn(
         ` shadow-neutral-300 shadow-inner hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
-        className
+        className,
       )}
     >
       <h1 className="text-2xl font-semibold">{heading}</h1>

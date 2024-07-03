@@ -41,8 +41,7 @@ const Navbar = () => {
       <SearchBar />
 
       <section className="flex items-center gap-4 sm:gap-5">
-      
-        <Sidebar/>
+        <Sidebar />
 
         <div className="sm:block hidden">
           <ThemeToggle />
@@ -66,7 +65,7 @@ const Navbar = () => {
           className={`${isSignedIn ? "hidden" : "whitespace-nowrap text-sm sm:text-md"}  `}
           href={"/sign-in"}
         >
-          <LogIn className="flex-shrink-0" size={20}/>
+          <LogIn className="flex-shrink-0" size={20} />
         </Link>
         <UserButton afterSignOutUrl={`/${storeId}`} />
       </section>
