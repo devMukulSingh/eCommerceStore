@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Menu, ShoppingBag } from "lucide-react";
+import { LogIn, Menu, ShoppingBag } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
@@ -11,6 +11,8 @@ import SearchBar from "./SearchBar";
 import { UserButton, useUser } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
 import NavlinksSkeleton from "./NavlinksSkeleton";
+import Sidebar from "./Sidebar";
+import { Button } from "../ui/button";
 const Navlinks = dynamic(() => import("./Navlinks"), {
   loading: () => <NavlinksSkeleton />,
 });
@@ -38,33 +40,33 @@ const Navbar = () => {
       <Navlinks />
       <SearchBar />
 
-      <section className="flex items-center gap-2 sm:gap-5">
-        <Menu
-          className="xl:hidden lg:hidden md:hidden block ml-auto"
-          onClick={() => dispatch(setOpenSidebar())}
-        />
+      <section className="flex items-center gap-4 sm:gap-5">
+      
+        <Sidebar/>
 
         <div className="sm:block hidden">
           <ThemeToggle />
         </div>
 
-        <button
+        <Button
+          size={"icon"}
           onClick={() => router.push(`/${storeId}/cart`)}
           className=" 
-                px-2
-                py-1
                 rounded-sm 
-                border
+                w-fit
                 ml-auto
                 hidden
                 sm:flex 
                 "
         >
-          <ShoppingBag className="mr-1" />
+          <ShoppingBag className="" />
           <h1 className="text-lg">{cartProducts?.length}</h1>
-        </button>
-        <Link className={`${isSignedIn ? "hidden" : ""}`} href={"/sign-in"}>
-          Sign In
+        </Button>
+        <Link
+          className={`${isSignedIn ? "hidden" : "whitespace-nowrap text-sm sm:text-md"}  `}
+          href={"/sign-in"}
+        >
+          <LogIn className="flex-shrink-0" size={20}/>
         </Link>
         <UserButton afterSignOutUrl={`/${storeId}`} />
       </section>

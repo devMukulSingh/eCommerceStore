@@ -6,25 +6,31 @@ import { cn } from "@/lib/utils";
 import { FolderClosed, SidebarClose, X } from "lucide-react";
 import { setOpenFilters } from "@/redux";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
+import { fetcher } from "@/lib/utils";
+import useSWR from "swr";
 
 export interface FilterProps {
-  filter: Ibrand[] | null;
   heading: string;
   valueKey: string;
   className?: string;
 }
 
-const Filter: React.FC<FilterProps> = ({
-  filter,
-  heading,
-  valueKey,
-  className,
-}) => {
+const Filter: React.FC<FilterProps> = ({ heading, valueKey, className }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentParams = searchParams.get(valueKey);
   const dispatch = useAppDispatch();
-
+  const { data: brands, isLoading } = useSWR(
+    `${API_BASE_URL_CLIENT}/brand`,
+    fetcher,
+    {
+      onError(e) {
+        console.log(`Error in get Brands`, e);
+      },
+      revalidateOnFocus: false,
+    }
+  );
   const handleFilter = (id: string) => {
     let query = {
       [valueKey]: id,
@@ -39,7 +45,7 @@ const Filter: React.FC<FilterProps> = ({
         url: window.location.href,
         query,
       },
-      { skipNull: true },
+      { skipNull: true }
     );
 
     router.push(url, { scroll: false });
@@ -48,22 +54,18 @@ const Filter: React.FC<FilterProps> = ({
       dispatch(setOpenFilters());
     }
   };
-  const openFilters = useAppSelector((state) => state.ecomm.openFilters);
+
   return (
     <main
       className={cn(
-        `${!openFilters ? "hidden" : ""} shadow-neutral-300 shadow-inner hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
-        className,
+        ` shadow-neutral-300 shadow-inner hidden sm:flex sm:flex-col gap-3 py-5 pl-5 pr-15 pr-20 border h-fit mt-10`,
+        className
       )}
     >
       <h1 className="text-2xl font-semibold">{heading}</h1>
-      <X
-        className="sm:hidden flex ml-auto absolute top-[20px] right-5"
-        onClick={() => dispatch(setOpenFilters())}
-      />
       <section className="flex flex-col gap-2 sm:mt-0 mt-5">
-        {filter &&
-          filter.map((f) => (
+        {brands &&
+          brands.map((f: Ibrand) => (
             <ul key={f.id}>
               <li
                 className={`${currentParams === f.id ? "underline font-semibold" : ""} cursor-pointer hover:underline`}

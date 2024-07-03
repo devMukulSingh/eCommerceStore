@@ -5,6 +5,7 @@ import Providers from "@/redux/providers";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/providers/theme-providers";
 import { ClerkProvider } from "@clerk/nextjs";
+import SWRProvider from "@/lib/SWRProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Providers>{children}</Providers>
+            <SWRProvider>
+              <Providers>{children}</Providers>
+            </SWRProvider>
             <Toaster />
           </ThemeProvider>
         </ClerkProvider>

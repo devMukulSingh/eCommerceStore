@@ -1,9 +1,10 @@
-import { getBrands } from "@/actions/getBrands";
-import FiltersSkeleton from "@/components/commons/FiltersSkeleton";
+"use client";
 import Filter from "./Filter";
+import { API_BASE_URL_CLIENT } from "@/lib/base_url_client";
+import useSWR from "swr";
 
 const FilterSection = async () => {
-  const brands = await getBrands();
+  const { data: brands} = useSWR(`${API_BASE_URL_CLIENT}/brand`);
 
   return (
     <>
